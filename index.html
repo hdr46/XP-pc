@@ -34,7 +34,7 @@ body{background:url('https://i.imgur.com/Zk6TR5k.jpg') center/cover no-repeat;he
 <div id="photo" class="win"><div class="bar"><span>Photos</span><button onclick="closeW('photo')">X</button></div><div class="content">Photos here</div></div>
 
 <div id="task"><div id="startBtn" onclick="toggleM()">start</div></div>
-
+<script>
 function openW(id){document.getElementById(id).style.display='block'}
 function closeW(id){document.getElementById(id).style.display='none'}
 function checkUSB(){if('showDirectoryPicker' in window){alert('USB supported')}else{alert('Use Chrome for USB')}}
