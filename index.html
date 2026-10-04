@@ -1,208 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows XP - Real Laptop OS 8GB RAM | 500GB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Windows XP - 8GB 500GB Mobile</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Tahoma',sans-serif;user-select:none}
-body{overflow:hidden;background:#000;width:100vw;height:100vh}
-#desktop{width:100vw;height:100vh;background:url('https://i.imgur.com/Zk6TR5k.jpg') center/cover no-repeat;position:relative;overflow:hidden}
-#icons{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:15px}
-.d-icon{width:80px;text-align:center;cursor:pointer;padding:5px;border-radius:3px}
-.d-icon:hover{background:rgba(255,255,255,0.2)}
-.d-icon img{width:48px;height:48px;display:block;margin:0 auto 3px}
-.d-icon span{color:white;font-size:11px;text-shadow:1px 1px 1px black}
-#taskbar{position:absolute;bottom:0;left:0;width:100%;height:30px;background:linear-gradient(to bottom,#3c81f5 0%,#245edb 100%);display:flex;align-items:center;z-index:9999;border-top:1px solid #4a90e2}
-#start{height:100%;padding:0 15px;background:linear-gradient(to bottom,#3ba33b,#1f7a1f);color:white;font-weight:bold;font-style:italic;border-radius:0 10px 10px 0;display:flex;align-items:center;gap:5px;cursor:pointer;font-size:14px;box-shadow:2px 0 5px rgba(0,0,0,0.5)}
-#clock{color:white;font-size:11px;padding:0 10px;background:linear-gradient(to bottom,#0f9cf0,#0a7bc2);height:100%;display:flex;align-items:center;border-left:1px solid #0a7bc2}
-.window{position:absolute;background:#ece9d8;border:2px solid #0055e5;border-top:0;border-radius:8px 8px 0 0;box-shadow:3px 3px 10px rgba(0,0,0,0.5);display:none;flex-direction:column;min-width:400px;min-height:300px;overflow:hidden;z-index:100}
-.win-title{height:28px;background:linear-gradient(to bottom,#0a6cf6,#0055e5);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 5px 0 8px;font-weight:bold;font-size:12px;border-radius:6px 6px 0 0;cursor:move}
-.win-controls{display:flex;gap:2px}
-.win-controls button{width:20px;height:20px;border:1px solid white;border-radius:3px;cursor:pointer;font-size:10px}
-.close{background:#e81123;color:white}.min{background:#3c81f5;color:white}
-.win-body{flex:1;background:white;overflow:auto;position:relative}
-#startMenu{position:absolute;bottom:30px;left:0;width:320px;height:450px;background:#fff;border:2px solid #0055e5;border-bottom:0;border-radius:8px 8px 0 0;display:none;z-index:9998;box-shadow:5px -5px 15px rgba(0,0,0,0.5);flex-direction:row;overflow:hidden}
-#startLeft{width:35%;background:#1a5db0;color:white;padding:10px}
-#startRight{flex:1;background:#fff;padding:5px}
-.s-item{padding:6px 8px;display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;border-radius:3px}
-.s-item:hover{background:#2f71cd;color:white}
-.explorer-toolbar{background:#ece9d8;padding:5px;display:flex;gap:5px;border-bottom:1px solid #aaa}
-.explorer-toolbar button{padding:3px 8px;font-size:11px}
-.drive{padding:10px;display:flex;align-items:center;gap:10px;cursor:pointer;border-bottom:1px solid #eee}
-.drive:hover{background:#e5f3ff}
-.drive-bar{width:100px;height:12px;background:#fff;border:1px solid #aaa;margin-top:3px}
-.drive-fill{height:100%;background:#6ea1ff}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma}
+body{background:#008080;overflow:hidden;height:100vh;width:100vw}
+#desk{width:100vw;height:100vh;background:url('https://i.imgur.com/Zk6TR5k.jpg') center/cover;padding:10px;overflow:auto;padding-bottom:60px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ico{background:rgba(0,0,0,0.25);border-radius:10px;padding:8px 2px;text-align:center;backdrop-filter:blur(2px);border:1px solid rgba(255,255,255,0.2)}
+.ico img{width:38px;height:38px}
+.ico span{color:white;font-size:9px;display:block;margin-top:2px;text-shadow:1px 1px 1px black;line-height:10px}
+.win{position:fixed;top:0;left:0;width:100vw;height:calc(100vh - 40px);background:#ece9d8;display:none;flex-direction:column;z-index:100;border:0}
+.bar{height:50px;background:linear-gradient(#0a6cf6,#003399);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-weight:bold;font-size:14px}
+.bar button{background:#ff1a1a;color:white;border:2px solid white;border-radius:8px;padding:8px 18px;font-weight:bold;font-size:16px}
+.body{flex:1;background:white;overflow:auto;position:relative}
+#task{position:fixed;bottom:0;left:0;width:100vw;height:40px;background:linear-gradient(to bottom,#3c81f5,#245edb);display:flex;align-items:center;z-index:9999}
+#startBtn{height:100%;padding:0 20px;background:linear-gradient(#3ba33b,#1f7a1f);color:white;font-weight:bold;font-style:italic;display:flex;align-items:center;border-radius:0 10px 10px 0}
+#menu{position:fixed;bottom:40px;left:0;width:92vw;max-width:360px;background:white;border-radius:12px 12px 0 0;box-shadow:0 -5px 30px rgba(0,0,0,0.5);display:none;z-index:9998;overflow:hidden;max-height:75vh}
+.mh{background:#1a5db0;color:white;padding:12px;font-weight:bold}
+.mi{padding:12px 14px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px;font-size:13px}
+.mi:active{background:#e5f3ff}
+.drive{padding:14px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ddd}
 </style>
 </head>
 <body>
-<div id="desktop">
-<div id="icons">
-<div class="d-icon" ondblclick="openWin('mycomp')"><img src="https://img.icons8.com/color/48/my-computer.png"><span>My Computer</span></div>
-<div class="d-icon" ondblclick="openWin('explorer')"><img src="https://img.icons8.com/color/48/folder-invoices.png"><span>My Documents</span></div>
-<div class="d-icon" ondblclick="openWin('photoeditor')"><img src="https://img.icons8.com/color/48/adobe-photoshop.png"><span>Photo Editor</span></div>
-<div class="d-icon" ondblclick="openWin('videoeditor')"><img src="https://img.icons8.com/color/48/adobe-premiere-pro.png"><span>Video Editor</span></div>
-<div class="d-icon" ondblclick="openWin('office')"><img src="https://img.icons8.com/color/48/ms-excel.png"><span>Excel / Power</span></div>
-<div class="d-icon" ondblclick="openWin('pdfeditor')"><img src="https://img.icons8.com/color/48/adobe-acrobat.png"><span>PDF Editor</span></div>
-<div class="d-icon" ondblclick="openWin('zip')"><img src="https://img.icons8.com/color/48/winrar.png"><span>Zip Archiver</span></div>
-<div class="d-icon" ondblclick="openWin('recycle')"><img src="https://img.icons8.com/color/48/full-trash.png"><span>500GB Free</span></div>
-</div>
-<div id="startMenu">
-<div id="startLeft">
-<div style="display:flex;align-items:center;gap:8px;margin-bottom:15px"><img src="https://img.icons8.com/color/40/user.png" style="border:2px solid white;border-radius:3px"><b>Admin<br>8GB RAM</b></div>
-<div class="s-item" onclick="openWin('office')">📊 Excel / PowerPoint</div>
-<div class="s-item" onclick="openWin('photoeditor')">🎨 Photo Editor</div>
-<div class="s-item" onclick="openWin('videoeditor')">🎬 Video Editor</div>
-<div class="s-item" onclick="openWin('pdfeditor')">📄 PDF Editor</div>
-<div class="s-item" onclick="openWin('notes')">📝 Samsung Notes</div>
-<div class="s-item" onclick="openWin('alarm')">⏰ Alarm</div>
-<div class="s-item" onclick="openWin('explorer')">📁 File Explorer</div>
-<div class="s-item" onclick="openWin('music')">🎵 Music Player</div>
-<div class="s-item" onclick="openWin('google')">🌐 Google</div>
-</div>
-<div id="startRight">
-<div style="background:#d8e6f8;padding:5px;font-weight:bold;font-size:12px">My Computer</div>
-<div class="s-item" onclick="openWin('mycomp')">💾 C: Drive (120GB)</div>
-<div class="s-item" onclick="openWin('mycomp')">💿 D: Drive (380GB)</div>
-<div class="s-item" onclick="checkUSB()">🔌 USB Device</div>
-<div style="margin-top:10px;background:#d8e6f8;padding:5px;font-weight:bold;font-size:12px">System</div>
-<div class="s-item" onclick="alert('RAM: '+(navigator.deviceMemory||8)+'GB | CPU: '+navigator.hardwareConcurrency+' Cores | 500GB Virtual')">⚙️ System Properties</div>
-<div class="s-item" onclick="alert('Future: Settings > Code ma addApp() thi navu software nakhi sakse!')">➕ Add New Software</div>
+<div id="desk">
+<div style="background:rgba(0,0,0,0.5);color:white;padding:6px 10px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:10px">💻 8GB RAM | 500GB HDD | MOBILE XP</div>
+<div class="grid">
+<div class="ico" onclick="openW('mycomp')"><img src="https://img.icons8.com/color/48/my-computer.png"><span>My Computer<br>500GB</span></div>
+<div class="ico" onclick="openW('files')"><img src="https://img.icons8.com/color/48/folder-invoices.png"><span>My Files</span></div>
+<div class="ico" onclick="openW('photo')"><img src="https://img.icons8.com/color/48/adobe-photoshop.png"><span>Photoshop</span></div>
+<div class="ico" onclick="openW('video')"><img src="https://img.icons8.com/color/48/adobe-premiere-pro.png"><span>Video Editor</span></div>
+<div class="ico" onclick="openW('excel')"><img src="https://img.icons8.com/color/48/ms-excel.png"><span>Excel / PPT</span></div>
+<div class="ico" onclick="openW('pdf')"><img src="https://img.icons8.com/color/48/adobe-acrobat.png"><span>PDF Editor</span></div>
+<div class="ico" onclick="openW('notes')"><img src="https://img.icons8.com/color/48/note.png"><span>Notes</span></div>
+<div class="ico" onclick="openW('media')"><img src="https://img.icons8.com/color/48/vlc.png"><span>Media</span></div>
+<div class="ico" onclick="openW('chrome')"><img src="https://img.icons8.com/color/48/chrome.png"><span>Google</span></div>
+<div class="ico" onclick="openW('calc')"><img src="https://img.icons8.com/color/48/calculator.png"><span>Calculator</span></div>
+<div class="ico" onclick="checkUSB()"><img src="https://img.icons8.com/color/48/usb-connector.png"><span>USB</span></div>
+<div class="ico" onclick="openW('mycomp')"><img src="https://img.icons8.com/color/48/hard-disk.png"><span>Local D:</span></div>
 </div>
 </div>
-<div id="mycomp" class="window" style="width:600px;height:400px;top:50px;left:100px">
-<div class="win-title"><span>My Computer - 500GB - 8GB RAM</span><div class="win-controls"><button class="close" onclick="closeWin('mycomp')">X</button></div></div>
-<div class="win-body" style="padding:0">
-<div class="drive" onclick="openWin('explorer')"><img src="https://img.icons8.com/color/32/hard-disk.png"><div><b>Local Disk (C:)</b><br><span style="font-size:11px">System, 8GB RAM, NTFS</span><div class="drive-bar"><div class="drive-fill" style="width:65%"></div></div></div></div>
-<div class="drive" onclick="openWin('explorer')"><img src="https://img.icons8.com/color/32/hard-disk.png"><div><b>Local Disk (D:)</b><br><span style="font-size:11px">Data, 380GB Free</span><div class="drive-bar"><div class="drive-fill" style="width:15%"></div></div></div></div>
-<div class="drive" onclick="checkUSB()"><img src="https://img.icons8.com/color/32/usb-connector.png"><div><b>Removable Disk (E:) USB</b><br><span style="font-size:11px">Click to connect USB</span></div></div>
+
+<div id="menu">
+<div class="mh">👤 Admin - 8GB RAM 500GB</div>
+<div class="mi" onclick="openW('excel')">📊 Excel / PowerPoint / Word</div>
+<div class="mi" onclick="openW('photo')">🎨 Photoshop - Photo Editor</div>
+<div class="mi" onclick="openW('video')">🎬 Video Editor - CapCut</div>
+<div class="mi" onclick="openW('pdf')">📄 PDF Editor</div>
+<div class="mi" onclick="openW('files')">📁 File Explorer - Real Files</div>
+<div class="mi" onclick="openW('notes')">📝 Samsung Notes</div>
+<div class="mi" onclick="openW('media')">🎵 Media Player</div>
+<div class="mi" onclick="openW('chrome')">🌐 Google Chrome</div>
+<div class="mi" onclick="openW('mycomp')">💾 My Computer 500GB</div>
+<div class="mi" onclick="checkUSB()">🔌 Connect Pen Drive</div>
 </div>
-</div>
-<div id="explorer" class="window" style="width:700px;height:450px;top:30px;left:150px">
-<div class="win-title"><span>File Explorer - Real Files</span><div class="win-controls"><button class="close" onclick="closeWin('explorer')">X</button></div></div>
-<div class="win-body" style="display:flex;flex-direction:column">
-<div class="explorer-toolbar">
-<button onclick="document.getElementById('fileInput').click()">📤 Upload Photo/Video</button>
-<button onclick="newFolder()">📁 New Folder</button>
-<input type="file" id="fileInput" multiple hidden onchange="handleFiles(this.files)">
-</div>
-<div id="fileList" style="padding:10px;flex:1;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,80px);gap:10px">
-<div style="grid-column:1/-1;padding:10px;background:#ffffcc;font-size:11px">👉 Upload dabav - tara real phone na photo/video ahiya dekhashe. USB: E: par click kar.</div>
-</div>
-</div>
-</div>
-<div id="photoeditor" class="window" style="width:90vw;height:85vh;top:20px;left:5vw">
-<div class="win-title"><span>Photo Editor - Real Photoshop</span><div class="win-controls"><button class="close" onclick="closeWin('photoeditor')">X</button></div></div>
-<div class="win-body"><iframe src="https://www.photopea.com/" style="width:100%;height:100%;border:0"></iframe></div>
-</div>
-<div id="videoeditor" class="window" style="width:90vw;height:85vh;top:20px;left:5vw">
-<div class="win-title"><span>Video Editor</span><div class="win-controls"><button class="close" onclick="closeWin('videoeditor')">X</button></div></div>
-<div class="win-body"><iframe src="https://www.capcut.com/" style="width:100%;height:100%;border:0"></iframe></div>
-</div>
-<div id="office" class="window" style="width:90vw;height:85vh;top:20px;left:5vw">
-<div class="win-title"><span>Excel / PowerPoint - Real Office</span><div class="win-controls"><button class="close" onclick="closeWin('office')">X</button></div></div>
-<div class="win-body"><iframe src="https://docs.google.com/spreadsheets/create" style="width:100%;height:100%;border:0"></iframe></div>
-</div>
-<div id="pdfeditor" class="window" style="width:80vw;height:80vh;top:30px;left:10vw">
-<div class="win-title"><span>PDF Editor</span><div class="win-controls"><button class="close" onclick="closeWin('pdfeditor')">X</button></div></div>
-<div class="win-body"><iframe src="https://www.sejda.com/pdf-editor" style="width:100%;height:100%;border:0"></iframe></div>
-</div>
-<div id="zip" class="window" style="width:500px;height:400px;top:100px;left:200px">
-<div class="win-title"><span>Zip Archiver</span><div class="win-controls"><button class="close" onclick="closeWin('zip')">X</button></div></div>
-<div class="win-body" style="padding:15px">
-<b>Real Zip Creator</b><br><br>
-<input type="file" id="zipInput" multiple><br><br>
-<button onclick="makeZip()" style="padding:8px 15px;background:#0055e5;color:white;border:0;border-radius:3px">Create ZIP</button>
-<div id="zipResult" style="margin-top:15px;font-size:12px"></div>
-</div>
-</div>
-<div id="notes" class="window" style="width:400px;height:400px;top:100px;left:300px">
-<div class="win-title"><span>Samsung Notes</span><div class="win-controls"><button class="close" onclick="closeWin('notes')">X</button></div></div>
-<div class="win-body"><textarea id="noteArea" style="width:100%;height:100%;border:0;padding:10px;resize:none;font-size:14px" placeholder="Samsung Notes - Auto Save"></textarea></div>
-</div>
-<div id="alarm" class="window" style="width:300px;height:250px;top:150px;left:400px">
-<div class="win-title"><span>Alarm Clock</span><div class="win-controls"><button class="close" onclick="closeWin('alarm')">X</button></div></div>
-<div class="win-body" style="padding:20px;text-align:center">
-<h2 id="clockTime">00:00:00</h2><br>
-<input type="time" id="alarmTime"><br><br>
-<button onclick="setAlarm()" style="padding:8px 15px">Set Alarm</button>
-<p id="alarmStatus" style="margin-top:10px;font-size:12px"></p>
-</div>
-</div>
-<div id="music" class="window" style="width:400px;height:350px;top:80px;left:250px">
-<div class="win-title"><span>Windows Media Player</span><div class="win-controls"><button class="close" onclick="closeWin('music')">X</button></div></div>
-<div class="win-body" style="padding:10px">
-<input type="file" accept="audio/*,video/*" onchange="playMedia(this)"><br><br>
-<audio id="audioPlayer" controls style="width:100%"></audio>
-<video id="videoPlayer" controls style="width:100%;margin-top:10px;display:none;max-height:200px"></video>
-</div>
-</div>
-<div id="google" class="window" style="width:90vw;height:85vh;top:20px;left:5vw">
-<div class="win-title"><span>Google Chrome</span><div class="win-controls"><button class="close" onclick="closeWin('google')">X</button></div></div>
-<div class="win-body"><iframe src="https://www.google.com/webhp?igu=1" style="width:100%;height:100%;border:0"></iframe></div>
-</div>
-<div id="recycle" class="window" style="width:500px;height:300px;top:120px;left:200px">
-<div class="win-title"><span>Recycle Bin - 500GB</span><div class="win-controls"><button class="close" onclick="closeWin('recycle')">X</button></div></div>
-<div class="win-body" style="padding:20px">System: 8GB RAM DDR4<br>HDD: 500GB<br>Status: Real Laptop Mode ON<br><br>Future: addApp() thi navu software naki sakse.</div>
-</div>
-<div id="taskbar">
-<div id="start" onclick="toggleStart()">🪟 start</div>
-<div id="clock"><span id="time"></span></div>
-</div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<div id="mycomp" class="win"><div class="bar"><span>💻 My Computer - 500GB</span><button onclick="closeW('mycomp')">✕ CLOSE</button></div><div class="body"><div class="drive"><img src="https://img.icons8.com/color/40/hard-disk.png"><div><b>C: System 120GB</b><br><small>8GB DDR4 - Used 45GB</small></div></div><div class="drive" onclick="openW('files')"><img src="https://img.icons8.com/color/40/hard-disk.png"><div><b>D: Data 380GB</b><br><small>Free - Tap to Open</small></div></div><div class="drive" onclick="checkUSB()"><img src="https://img.icons8.com/color/40/usb-connector.png"><div><b>E: USB Pen Drive</b><br><small>Tap to Connect Phone Storage</small></div></div><div style="padding:15px;font-size:12px;background:#ffffcc;margin:10px;border-radius:8px">System: Intel / 8GB RAM / 500GB HDD - Real Laptop Mode ON ✅</div></div></div>
+
+<div id="files" class="win"><div class="bar"><span>📁 File Explorer</span><button onclick="closeW('files')">✕ CLOSE</button></div><div class="body" style="padding:0"><div style="padding:10px;background:#ece9d8;display:flex;gap:8px"><button onclick="document.getElementById('f').click()" style="flex:1;padding:12px;background:#0a6cf6;color:white;border:0;border-radius:8px;font-weight:bold">📤 UPLOAD PHOTO / VIDEO</button><input type="file" id="f" multiple hidden onchange="showF(this.files)"></div><div id="fl" style="padding:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px"><div style="grid-column:1/-1;background:#eef6ff;padding:12px;border-radius:8px;font-size:12px">👆 Upload dabav - tara phone na photo/video aavse. Double tap thi khulse. Real kaam karse.</div></div></div></div>
+
+<div id="photo" class="win"><div class="bar"><span>🎨 Photo Editor - Photoshop</span><button onclick="closeW('photo')">✕ CLOSE</button></div><div class="body"><iframe src="https://www.photopea.com/" style="width:100%;height:100%;border:0"></iframe></div></div>
+<div id="video" class="win"><div class="bar"><span>🎬 Video Editor</span><button onclick="closeW('video')">✕ CLOSE</button></div><div class="body"><iframe src="https://www.capcut.com/editor" style="width:100%;height:100%;border:0"></iframe></div></div>
+<div id="excel" class="win"><div class="bar"><span>📊 Excel / PowerPoint</span><button onclick="closeW('excel')">✕ CLOSE</button></div><div class="body"><iframe src="https://docs.google.com/spreadsheets/" style="width:100%;height:100%;border:0"></iframe></div></div>
+<div id="pdf" class="win"><div class="bar"><span>📄 PDF Editor</span><button onclick="closeW('pdf')">✕ CLOSE</button></div><div class="body"><iframe src="https://www.ilovepdf.com/pdf-editor" style="width:100%;height:100%;border:0"></iframe></div></div>
+<div id="notes" class="win"><div class="bar"><span>📝 Notes</span><button onclick="closeW('notes')">✕ CLOSE</button></div><div class="body"><textarea id="nt" style="width:100%;height:100%;border:0;padding:15px;font-size:16px" placeholder="Lakh... auto save thase"></textarea></div></div>
+<div id="media" class="win"><div class="bar"><span>🎵 Media Player</span><button onclick="closeW('media')">✕ CLOSE</button></div><div class="body" style="padding:15px"><input type="file" accept="audio/*,video/*" onchange="playM(this)" style="width:100%"><br><br><audio id="ap" controls style="width:100%"></audio><video id="vp" controls style="width:100%;margin-top:10px;max-height:60vh;display:none"></video></div></div>
+<div id="chrome" class="win"><div class="bar"><span>🌐 Google</span><button onclick="closeW('chrome')">✕ CLOSE</button></div><div class="body"><iframe src="https://www.google.com/webhp?igu=1" style="width:100%;height:100%;border:0"></iframe></div></div>
+<div id="calc" class="win"><div class="bar"><span>Calculator</span><button onclick="closeW('calc')">✕ CLOSE</button></div><div class="body" style="display:flex;align-items:center;justify-content:center;background:#eee"><div style="width:90%;max-width:300px;background:white;padding:15px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.2)"><input id="cd" style="width:100%;height:50px;font-size:24px;text-align:right;padding:5px;border:2px solid #ccc;border-radius:8px" readonly><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px"><button onclick="calc('7')" style="height:50px">7</button><button onclick="calc('8')" style="height:50px">8</button><button onclick="calc('9')" style="height:50px">9</button><button onclick="calc('/')" style="height:50px">/</button><button onclick="calc('4')" style="height:50px">4</button><button onclick="calc('5')" style="height:50px">5</button><button onclick="calc('6')" style="height:50px">6</button><button onclick="calc('*')" style="height:50px">*</button><button onclick="calc('1')" style="height:50px">1</button><button onclick="calc('2')" style="height:50px">2</button><button onclick="calc('3')" style="height:50px">3</button><button onclick="calc('-')" style="height:50px">-</button><button onclick="calc('0')" style="height:50px">0</button><button onclick="calc('.')" style="height:50px">.</button><button onclick="calcE()" style="height:50px;background:#0a6cf6;color:white">=</button><button onclick="calc('+')" style="height:50px">+</button><button onclick="document.getElementById('cd').value=''" style="grid-column:span 4;height:40px;background:#ff4444;color:white">C CLEAR</button></div></div></div></div>
+
+<div id="task"><div id="startBtn" onclick="toggleM()">🪟 start</div><div style="margin-left:auto;color:white;font-size:11px;padding-right:10px" id="tm"></div></div>
+
 <script>
-function openWin(id){document.getElementById(id).style.display='flex';document.getElementById('startMenu').style.display='none';}
-function closeWin(id){document.getElementById(id).style.display='none';}
-function toggleStart(){let m=document.getElementById('startMenu');m.style.display=m.style.display==='flex'?'none':'flex';}
-document.addEventListener('click',e=>{if(!e.target.closest('#start') && !e.target.closest('#startMenu')) document.getElementById('startMenu').style.display='none';});
-setInterval(()=>{let d=new Date();document.getElementById('time').textContent=d.toLocaleTimeString();let ct=document.getElementById('clockTime');if(ct) ct.textContent=d.toLocaleTimeString();},1000);
-function handleFiles(files){
- let list=document.getElementById('fileList');list.innerHTML='';
- for(let f of files){
-   let url=URL.createObjectURL(f);
-   let div=document.createElement('div');div.className='d-icon';div.style.color='black';
-   if(f.type.startsWith('image')) div.innerHTML=`<img src="${url}" style="width:48px;height:48px;object-fit:cover"><span style="color:black;text-shadow:none">${f.name.substring(0,10)}</span>`;
-   else div.innerHTML=`<img src="https://img.icons8.com/color/48/file.png"><span style="color:black;text-shadow:none">${f.name.substring(0,10)}</span>`;
-   div.ondblclick=()=>{window.open(url,'_blank')};
-   list.appendChild(div);
- }
-}
-async function checkUSB(){
- if('showDirectoryPicker' in window){
-   try{let h=await window.showDirectoryPicker();alert('USB Connected: '+h.name);openWin('explorer');}catch(e){alert('USB cancel');}
- }else{alert('Upload thi files select kar - same kaam!');openWin('explorer');}
-}
-function playMedia(input){
- let f=input.files[0];if(!f) return;let url=URL.createObjectURL(f);
- let ap=document.getElementById('audioPlayer');let vp=document.getElementById('videoPlayer');
- if(f.type.startsWith('video')){vp.src=url;vp.style.display='block';vp.play();}else{ap.src=url;vp.style.display='none';ap.play();}
-}
-function newFolder(){let n=prompt('Folder name:');if(!n) return;let list=document.getElementById('fileList');let div=document.createElement('div');div.className='d-icon';div.style.color='black';div.innerHTML=`<img src="https://img.icons8.com/color/48/folder-invoices.png"><span style="color:black;text-shadow:none">${n}</span>`;list.appendChild(div);}
-async function makeZip(){
- let files=document.getElementById('zipInput').files;if(!files.length) return alert('File select kar');
- let zip=new JSZip();for(let f of files) zip.file(f.name,f);
- let blob=await zip.generateAsync({type:'blob'});let url=URL.createObjectURL(blob);
- document.getElementById('zipResult').innerHTML=`<a href="${url}" download="archive.zip" style="color:blue">📥 Download ZIP</a>`;
-}
-let alarmTimeout;
-function setAlarm(){
- let t=document.getElementById('alarmTime').value;if(!t) return;
- document.getElementById('alarmStatus').textContent='Alarm set for '+t;
- let [h,m]=t.split(':').map(Number);let now=new Date();let alarm=new Date();alarm.setHours(h,m,0,0);
- if(alarm<now) alarm.setDate(alarm.getDate()+1);
- let diff=alarm-now;clearTimeout(alarmTimeout);
- alarmTimeout=setTimeout(()=>{alert('⏰ Alarm! '+t);new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg').play();},diff);
-}
-document.getElementById('noteArea').value=localStorage.getItem('xp_notes')||'';
-document.getElementById('noteArea').addEventListener('input',e=>localStorage.setItem('xp_notes',e.target.value));
-document.querySelectorAll('.window').forEach(w=>{
- let title=w.querySelector('.win-title');let pos1=0,pos2=0,pos3=0,pos4=0;
- title.onmousedown=dragMouseDown;
- function dragMouseDown(e){e.preventDefault();pos3=e.clientX;pos4=e.clientY;document.onmouseup=closeDrag;document.onmousemove=elementDrag;}
- function elementDrag(e){e.preventDefault();pos1=pos3-e.clientX;pos2=pos4-e.clientY;pos3=e.clientX;pos4=e.clientY;w.style.top=(w.offsetTop-pos2)+'px';w.style.left=(w.offsetLeft-pos1)+'px';}
- function closeDrag(){document.onmouseup=null;document.onmousemove=null;}
-});
+function openW(id){document.querySelectorAll('.win').forEach(w=>w.style.display='none');document.getElementById(id).style.display='flex';document.getElementById('menu').style.display='none';}
+function closeW(id){document.getElementById(id).style.display='none';}
+function toggleM(){let m=document.getElementById('menu');m.style.display=m.style.display==='block'?'none':'block';}
+setInterval(()=>{let d=new Date();document.getElementById('tm').textContent=d.toLocaleTimeString();},1000);
+function showF(files){let fl=document.getElementById('fl');fl.innerHTML='';for(let f of files){let u=URL.createObjectURL(f);let d=document.createElement('div');d.style.textAlign='center';d.style.background='white';d.style.padding='8px';d.style.borderRadius='8px';d.style.border='1px solid #ddd';if(f.type.startsWith('image')) d.innerHTML=`<img src="${u}" style="width:100%;height:70px;object-fit:cover;border-radius:5px"><br><small>${f.name.slice(0,10)}</small>`;else d.innerHTML=`<div style="font-size:30px">🎬</div><small>${f.name.slice(0,10)}</small>`;d.onclick=()=>window.open(u,'_blank');fl.appendChild(d);}}
+function checkUSB(){if('showDirectoryPicker' in window){window.showDirectoryPicker().then(()=>{alert('USB Connected!');openW('files');});}else{alert('Upload button dabav - e j USB jevu kaam karse!');openW('files');}}
+function playM(i){let f=i.files[0];if(!f) return;let u=URL.createObjectURL(f);if(f.type.startsWith('video')){let v=document.getElementById('vp');v.src=u;v.style.display='block';v.play();}else{document.getElementById('ap').src=u;document.getElementById('ap').play();}}
+function calc(v){document.getElementById('cd').value+=v;} function calcE(){try{document.getElementById('cd').value=eval(document.getElementById('cd').value);}catch{document.getElementById('cd').value='Error';}}
+document.getElementById('nt').value=localStorage.getItem('xp_n')||'';document.getElementById('nt').addEventListener('input',e=>localStorage.setItem('xp_n',e.target.value));
+document.addEventListener('click',e=>{if(!e.target.closest('#startBtn')&&!e.target.closest('#menu')) document.getElementById('menu').style.display='none';});
 </script>
 </body>
 </html>
