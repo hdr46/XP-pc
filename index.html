@@ -1,260 +1,48 @@
-⅚<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Windows 7 - Real OS</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:url('https://i.imgur.com/Zk6TR5k.jpg') no-repeat center center fixed;background-size:cover;font-family:Segoe UI,Tahoma;height:100vh;width:100vw;overflow:hidden;touch-action:none}
-#desktop{position:absolute;top:10px;left:10px}
-.dicon{width:78px;text-align:center;color:white;font-size:11px;text-shadow:1px 1px 3px #000;margin-bottom:20px;cursor:pointer}
-.dicon.box{width:48px;height:48px;margin:0 auto 4px auto;background:#ffffff33;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:2px 2px 8px #0009}
-
-/* WINDOW */
-.win{position:fixed;background:#f0f0f0;border:1px solid #3c7fb1;border-radius:6px 6px 0 0;box-shadow:0 0 20px #000c;display:none;z-index:100;overflow:hidden}
-.win.active{display:block}
-.tbar{background:linear-gradient(#a3d1ff,#2a6dc9);color:white;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:13px;cursor:move}
-.close{width:32px;height:20px;background:#e81123;border-radius:3px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.wbody{background:white;height:calc(100% - 32px);overflow:auto}
-
-/* START MENU - TARA PIC JEVO */
-#startMenu{position:fixed;bottom:36px;left:0;width:400px;max-width:92vw;height:420px;background:linear-gradient(to bottom, #1a3a5a 0%, #2a5a8a 100%);border:1px solid #3a7fbf;border-radius:6px 6px 0 0;display:none;z-index:500;box-shadow:5px -5px 20px #000a;overflow:hidden}
-#startMenu.open{display:flex}
-.s-left{width:60%;background:white;padding:6px}
-.s-right{width:40%;background:linear-gradient(#2a5a8a,#1a3a5a);color:white;padding:10px}
-.s-item{padding:8px 8px;display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;border-radius:3px}
-.s-item:hover{background:#e5f3ff}
-.s-right-item{padding:9px 6px;font-size:13px;cursor:pointer;border-radius:3px}
-.s-right-item:hover{background:#ffffff22}
-#searchBox{width:95%;margin:6px;padding:7px;border:1px solid #aaa;border-radius:3px}
-
-/* TASKBAR */
-#taskbar{position:fixed;bottom:0;left:0;width:100%;height:36px;background:linear-gradient(#5aa8ff 0%, #245edc 50%, #1a4fc4 100%);border-top:1px solid #6bb3ff;display:flex;align-items:center;justify-content:space-between;z-index:600}
-#startBtn{background:linear-gradient(#4ac44a,#1e7a1f);color:white;padding:0 18px;height:30px;display:flex;align-items:center;gap:6px;font-weight:bold;border-radius:15px;margin-left:4px;box-shadow:1px 1px 3px #000a;cursor:pointer}
-#clock{color:white;font-size:11px;text-align:right;padding-right:10px;line-height:14px}
-
-/* APPS */
-.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px}
-.calc-btn{height:42px;background:linear-gradient(#fff,#ddd);border:1px solid #999;border-radius:3px;font-size:16px;cursor:pointer}
-.calc-btn:active{background:#aaccff}
-#calcDisplay{width:100%;height:50px;background:#fff;border:2px inset #ccc;text-align:right;font-size:24px;padding:8px;box-sizing:border-box}
-
-canvas{touch-action:none;cursor:crosshair}
-</style>
-</head>
-<body>
-
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Win7 Fixed</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#008080;font-family:Tahoma;height:100vh;overflow:hidden}
+#desktop{position:absolute;top:10px;left:10px}.dicon{width:70px;text-align:center;color:#fff;font-size:11px;margin-bottom:15px;cursor:pointer}.box{width:48px;height:48px;background:#fff3;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 4px}
+.win{position:fixed;background:#f0f0f0;border:2px solid #000;display:none;z-index:100;top:10%;left:5%;width:90%;height:70%}.tbar{background:#000080;color:#fff;padding:5px;display:flex;justify-content:space-between}.close{background:red;padding:2px 8px;cursor:pointer}
+.wbody{background:#fff;height:calc(100% - 28px);overflow:auto;padding:10px}
+#startMenu{position:fixed;bottom:36px;left:0;width:320px;height:360px;background:#c0c0c0;border:2px outset #fff;display:none;z-index:500}
+#startMenu.open{display:block}
+#taskbar{position:fixed;bottom:0;left:0;width:100%;height:36px;background:#c0c0c0;border-top:2px outset #fff;display:flex;justify-content:space-between;align-items:center;z-index:600}
+#startBtn{background:#000080;color:#fff;padding:5px 15px;margin-left:5px;cursor:pointer;font-weight:bold}
+</style></head><body>
 <div id="desktop">
-  <div class="dicon" onclick="openApp('computer')"><div class="box">💻</div>My Computer</div>
-  <div class="dicon" onclick="openApp('files')"><div class="box">📁</div>My Files</div>
-  <div class="dicon" onclick="openApp('recycle')"><div class="box">🗑️</div>Recycle Bin</div>
+<div class="dicon" onclick="openApp('computer')"><div class="box">💻</div>My Computer</div>
+<div class="dicon" onclick="openApp('files')"><div class="box">📁</div>My Files</div>
+<div class="dicon" onclick="openApp('recycle')"><div class="box">🗑️</div>Recycle Bin</div>
 </div>
 
-<!-- START MENU (TARA PIC JEVO) -->
-<div id="startMenu">
-  <div class="s-left">
-    <div class="s-item" onclick="openApp('snip')"><span style="font-size:20px">✂️</span> Snipping Tool</div>
-    <div class="s-item" onclick="openApp('calc')"><span style="font-size:20px">🧮</span> Calculator</div>
-    <div class="s-item" onclick="openApp('sticky')"><span style="font-size:20px">📝</span> Sticky Notes</div>
-    <div class="s-item" onclick="openApp('paint')"><span style="font-size:20px">🎨</span> Paint</div>
-    <div class="s-item" onclick="openApp('notepad')"><span style="font-size:20px">📄</span> Notepad</div>
-    <div class="s-item" onclick="openApp('files')"><span style="font-size:20px">📂</span> File Manager</div>
-    <div style="margin-top:10px"><input id="searchBox" placeholder="Search programs and files"></div>
-  </div>
-  <div class="s-right">
-    <div style="text-align:center;margin:10px"><div style="width:50px;height:50px;background:orange;border-radius:6px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:28px">🌻</div><div style="margin-top:6px">user</div></div>
-    <div class="s-right-item" onclick="openApp('files')">Documents</div>
-    <div class="s-right-item" onclick="openApp('photos')">Pictures</div>
-    <div class="s-right-item" onclick="openApp('files')">Music</div>
-    <div class="s-right-item" onclick="openApp('computer')">Computer</div>
-    <div class="s-right-item" onclick="openApp('control')">Control Panel</div>
-    <div style="position:absolute;bottom:10px;left:10px;right:10px;display:flex;gap:6px"><button style="padding:6px 12px;border-radius:12px;border:1px solid #0005;cursor:pointer" onclick="location.reload()">🔴 Shut down</button></div>
-  </div>
-</div>
+<div id="startMenu"><div style="padding:10px">
+<div onclick="openApp('computer')" style="padding:8px;background:#fff;margin:3px;cursor:pointer">💻 My Computer</div>
+<div onclick="openApp('files')" style="padding:8px;background:#fff;margin:3px;cursor:pointer">📁 My Files</div>
+<div onclick="openApp('recycle')" style="padding:8px;background:#fff;margin:3px;cursor:pointer">🗑️ Recycle Bin</div>
+<button onclick="location.reload()" style="margin-top:20px">🔴 Shutdown</button>
+</div></div>
 
-<!-- WINDOWS -->
-<div id="win-computer" class="win" style="top:8%;left:3%;width:94%;height:70%"><div class="tbar"><span>💻 My Computer</span><span class="close" onclick="closeApp('computer')">✕</span></div><div class="wbody" style="padding:10px"><div style="font-weight:bold;margin-bottom:8px">Hard Disk Drives</div><div id="driveInfo" style="display:grid;gap:8px"></div><div style="margin-top:12px"><button onclick="document.getElementById('realFile').click()" style="padding:8px 12px">📤 Upload Real File from Phone</button><input type="file" id="realFile" style="display:none" multiple onchange="handleFiles(this.files)"></div><div id="fileList"></div></div></div>
+<div id="win-computer" class="win"><div class="tbar"><span>My Computer</span><span class="close" onclick="closeApp('computer')">X</span></div><div class="wbody"><div id="driveInfo"></div><br><button onclick="document.getElementById('realFile').click()">📤 Upload File</button><input type="file" id="realFile" style="display:none" multiple onchange="handleFiles(this.files)"></div></div>
+<div id="win-files" class="win"><div class="tbar"><span>My Files</span><span class="close" onclick="closeApp('files')">X</span></div><div class="wbody" id="filesBody"></div></div>
+<div id="win-recycle" class="win"><div class="tbar"><span>Recycle Bin</span><span class="close" onclick="closeApp('recycle')">X</span></div><div class="wbody"><div id="recycleList"></div><br><button onclick="emptyRecycle()">Empty Bin</button> <button onclick="restoreAll()">Restore All</button></div></div>
 
-<div id="win-calc" class="win" style="top:15%;left:10%;width:260px;height:360px"><div class="tbar"><span>🧮 Calculator - REAL</span><span class="close" onclick="closeApp('calc')">✕</span></div><div class="wbody"><input id="calcDisplay" readonly value="0"><div class="calc-grid"><button class="calc-btn" onclick="calcClear()">C</button><button class="calc-btn" onclick="calcDel()">⌫</button><button class="calc-btn" onclick="calcInput('%')">%</button><button class="calc-btn" onclick="calcInput('/')">÷</button><button class="calc-btn" onclick="calcInput('7')">7</button><button class="calc-btn" onclick="calcInput('8')">8</button><button class="calc-btn" onclick="calcInput('9')">9</button><button class="calc-btn" onclick="calcInput('*')">×</button><button class="calc-btn" onclick="calcInput('4')">4</button><button class="calc-btn" onclick="calcInput('5')">5</button><button class="calc-btn" onclick="calcInput('6')">6</button><button class="calc-btn" onclick="calcInput('-')">-</button><button class="calc-btn" onclick="calcInput('1')">1</button><button class="calc-btn" onclick="calcInput('2')">2</button><button class="calc-btn" onclick="calcInput('3')">3</button><button class="calc-btn" onclick="calcInput('+')">+</button><button class="calc-btn" onclick="calcInput('0')">0</button><button class="calc-btn" onclick="calcInput('.')">.</button><button class="calc-btn" style="grid-column:span 2;background:#8ec6ff" onclick="calcEqual()">=</button></div></div></div>
-
-<div id="win-paint" class="win" style="top:5%;left:2%;width:96%;height:78%"><div class="tbar"><span>🎨 Paint - REAL Drawing</span><span class="close" onclick="closeApp('paint')">✕</span></div><div class="wbody" style="display:flex;flex-direction:column"><div style="padding:4px;background:#eee;display:flex;gap:6px;align-items:center"><input type="color" id="pColor" value="#000000"><input type="range" id="pSize" min="1" max="20" value="3"><button onclick="clearCanvas()" style="padding:4px 8px">Clear</button><button onclick="saveCanvas()" style="padding:4px 8px">Save Image</button></div><canvas id="pCanvas" style="flex:1;background:white"></canvas></div></div>
-
-<div id="win-notepad" class="win" style="top:10%;left:5%;width:90%;height:65%"><div class="tbar"><span>📝 Notepad - REAL Save</span><span class="close" onclick="closeApp('notepad')">✕</span></div><div class="wbody" style="display:flex;flex-direction:column"><div style="padding:4px;background:#eee"><button onclick="saveNotepad()" style="padding:4px 10px">💾 Save</button><span id="noteStatus" style="font-size:11px;margin-left:10px;color:green"></span></div><textarea id="notepadArea" style="flex:1;width:100%;border:none;padding:10px;resize:none;font-family:monospace" placeholder="Type here... real notepad, auto saves!"></textarea></div></div>
-
-<div id="win-photos" class="win" style="top:12%;left:5%;width:90%;height:65%"><div class="tbar"><span>🖼️ Photos - REAL</span><span class="close" onclick="closeApp('photos')">✕</span></div><div class="wbody" style="padding:10px"><input type="file" accept="image/*" onchange="loadPhoto(this)" style="margin-bottom:10px"><div id="photoGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"></div></div></div>
-
-<div id="win-files" class="win" style="top:10%;left:5%;width:90%;height:65%"><div class="tbar"><span>📁 File Manager - REAL</span><span class="close" onclick="closeApp('files')">✕</span></div><div class="wbody" id="filesBody" style="padding:10px"></div></div>
-
-<div id="taskbar"><div id="startBtn" onclick="toggleStart()"><span style="font-size:18px">🪟</span> Start</div><div id="clock"><div id="time"></div><div id="date"></div></div></div>
+<div id="taskbar"><div id="startBtn" onclick="toggleStart()">Start</div><div id="clock">Win7</div></div>
 
 <script>
-// CLOCK
-function updateClock(){let d=new Date();document.getElementById('time').innerText=d.toLocaleTimeString();document.getElementById('date').innerText=d.toLocaleDateString();} setInterval(updateClock,1000); updateClock();
-
-// WINDOW SYSTEM
-function openApp(id){document.querySelectorAll('.win').forEach(w=>w.style.display='none');document.getElementById('win-'+id).style.display='block';document.getElementById('startMenu').classList.remove('open'); if(id=='computer') loadDrives(); if(id=='paint') initPaint(); if(id=='notepad') loadNotepad(); if(id=='files') loadFilesApp();}
+function openApp(id){document.querySelectorAll('.win').forEach(w=>w.style.display='none');document.getElementById('win-'+id).style.display='block';document.getElementById('startMenu').classList.remove('open'); if(id=='computer') loadDrives(); if(id=='files') loadFilesApp(); if(id=='recycle') loadRecycleBin();}
 function closeApp(id){document.getElementById('win-'+id).style.display='none';}
 function toggleStart(){document.getElementById('startMenu').classList.toggle('open');}
-
-  // REAL COMPUTER INFO - 100% REAL METER
- async function loadDrives(){
-  let info=document.getElementById('driveInfo');
-  let ram = navigator.deviceMemory || 8;
-  let cores = navigator.hardwareConcurrency || 8;
-  let battery = "83%";
-  try{ let b = await navigator.getBattery(); battery = Math.round(b.level*100)+"%"; }catch(e){}
-
-  let quotaGB="0", usedGB="0", freeGB="0", usedMB="0", freeMB="0";
-  try{
-    if(navigator.storage && navigator.storage.estimate){
-      let est = await navigator.storage.estimate();
-      quotaGB = (est.quota / (1024*1024*1024)).toFixed(2);
-      
-      // ✅ REAL UPLOADED SIZE ADD KARVU - AHIYA JAADU CHE!
-      let realFiles = JSON.parse(localStorage.getItem('real_files') || '[]');
-      let uploadedBytes = 0;
-      realFiles.forEach(f=> uploadedBytes += f.size);
-      let totalUsage = est.usage + uploadedBytes;
-      
-      usedGB = (totalUsage / (1024*1024*1024)).toFixed(2);
-      freeGB = ((est.quota-totalUsage) / (1024*1024*1024)).toFixed(2);
-      usedMB = (totalUsage / (1024*1024)).toFixed(2);
-      freeMB = ((est.quota-totalUsage) / (1024*1024)).toFixed(0);
-    }
-  }catch(e){ quotaGB=10; usedGB=0.1; freeGB=9.9; usedMB=100; freeMB=10140; }
-
-    let per = quotaGB>0 ? (usedGB/quotaGB*100).toFixed(1) : 0;
-  
-  info.innerHTML = `
-  <div style="border:2px inset #fff;padding:8px;background:#fff;margin-bottom:8px">
-    <div style="display:flex;gap:8px"><div style="font-size:32px">💾</div><div style="flex:1">
-    <b>Local Disk (C:)</b><br>
-    <div style="border:1px solid #000;height:14px"><div style="background:#00a;height:100%;width:${per}%"></div></div>
-    <span style="font-size:11px">${freeGB} GB free of ${quotaGB} GB</span><br>
-    <span style="font-size:11px">Used: ${usedGB} GB (${usedMB} MB) ${per}% | Free: ${freeGB} GB (${freeMB} MB)</span><br>
-    <span style="font-size:11px;color:green">Battery: ${battery} (Real) | RAM: ${ram}GB | CPU: ${cores} Core</span>
-    </div></div>
-  </div>
-  <div style="border:2px inset #fff;padding:8px;background:#fff;margin-bottom:8px"><b>💿 Data (D:)</b> - 50GB Backup</div>
-  <div style="border:2px inset #fff;padding:8px;background:#fff"><b>🖼️ My Photos (${JSON.parse(localStorage.getItem('real_files')||'[]').length} files)</b></div>
-  <div style="margin-top:8px;background:#000;color:#0f0;padding:6px;font-size:11px">🔋 REAL STATUS | ${battery} | RAM: ${ram}GB | Uploaded: ${usedMB} MB</div>`;
-}
-function calcClear(){calcVal=""; display.value="0";}
-// REAL PAINT
-let canvas, ctx, drawing=false;
-function initPaint(){canvas=document.getElementById('pCanvas'); ctx=canvas.getContext('2d'); canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; ctx.fillStyle="white"; ctx.fillRect(0,0,canvas.width,canvas.height); canvas.onmousedown=(e)=>{drawing=true; draw(e)}; canvas.onmousemove=draw; canvas.onmouseup=()=>drawing=false; canvas.ontouchstart=(e)=>{drawing=true; draw(e.touches[0]); e.preventDefault()}; canvas.ontouchmove=(e)=>{draw(e.touches[0]); e.preventDefault()}; canvas.ontouchend=()=>drawing=false;}
-function draw(e){if(!drawing) return; let rect=canvas.getBoundingClientRect(); let x=e.clientX-rect.left; let y=e.clientY-rect.top; ctx.fillStyle=document.getElementById('pColor').value; ctx.beginPath(); ctx.arc(x,y,document.getElementById('pSize').value,0,Math.PI*2); ctx.fill();}
-function clearCanvas(){ctx.fillStyle="white"; ctx.fillRect(0,0,canvas.width,canvas.height);}
-function saveCanvas(){let a=document.createElement('a'); a.download='paint.png'; a.href=canvas.toDataURL(); a.click();}
-
-// REAL NOTEPAD
-function loadNotepad(){document.getElementById('notepadArea').value=localStorage.getItem('real_notepad')||"";}
-function saveNotepad(){localStorage.setItem('real_notepad', document.getElementById('notepadArea').value); document.getElementById('noteStatus').innerText="Saved!"; setTimeout(()=>document.getElementById('noteStatus').innerText="",1500); }
-document.getElementById('notepadArea')?.addEventListener('input', ()=>{localStorage.setItem('real_notepad', document.getElementById('notepadArea').value)})
-
-// REAL FILE HANDLING - FULL FIXED
-let realFiles = JSON.parse(localStorage.getItem('real_files') || '[]');
-let realRecycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
-
-function handleFiles(files){
-  for(let f of files){
-    let reader = new FileReader();
-    reader.onload = function(e){
-      try{
-        localStorage.setItem('real_file_'+Date.now()+'_'+f.name, e.target.result);
-        realFiles.push({name:f.name, size:f.size, data: e.target.result});
-        localStorage.setItem('real_files', JSON.stringify(realFiles.map(x=>({name:x.name,size:x.size})))); // size only save to avoid quota
-        loadDrives(); loadFilesApp(); loadPhotoList();
-      }catch(err){ alert("Storage full! "+err.message); }
-    };
-    reader.readAsDataURL(f);
-  }
-}
-
-function loadFilesApp(){
-  let body = document.getElementById('filesBody');
-  if(!body) return;
-  if(realFiles.length==0){ body.innerHTML="<p style='padding:10px'>No files</p>"; return; }
-  body.innerHTML = realFiles.map((f,i)=>`
-    <div style="display:flex;justify-content:space-between;padding:6px;border-bottom:1px solid #ccc;background:#fff">
-      <span>📄 ${f.name} (${(f.size/1024/1024).toFixed(2)} MB)</span>
-      <button onclick="deleteRealFile(${i})" style="background:#c00;color:#fff;border:1px outset #fff">X</button>
-    </div>
-  `).join('');
-}
-
-function deleteRealFile(i){
-  let files = JSON.parse(localStorage.getItem('real_files') || '[]');
-  let recycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
-  recycle.push(files[i]);
-  files.splice(i,1);
-  realFiles = files; // update global
-  localStorage.setItem('real_files', JSON.stringify(files));
-  localStorage.setItem('real_recycle', JSON.stringify(recycle));
-  loadFilesApp(); loadDrives(); loadRecycleBin();
-}
-
-function loadRecycleBin(){
-  let recycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
-  let box = document.getElementById('recycleList');
-  if(!box) return;
-  if(recycle.length==0){ box.innerHTML="<p style='padding:10px'>Recycle Bin empty</p>"; return; }
-  box.innerHTML = recycle.map((f,i)=>`
-    <div style="display:flex;justify-content:space-between;padding:5px;border-bottom:1px solid #ccc;background:#fff">
-      <span>🗑️ ${f.name}</span>
-      <span>
-        <button onclick="restoreFile(${i})">Restore</button>
-        <button onclick="permanentDelete(${i})">Delete</button>
-      </span>
-    </div>
-  `).join('');
-}
-
-function restoreFile(i){
-  let recycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
-  let files = JSON.parse(localStorage.getItem('real_files') || '[]');
-  files.push(recycle[i]);
-  recycle.splice(i,1);
-  realFiles=files;
-  localStorage.setItem('real_files', JSON.stringify(files));
-  localStorage.setItem('real_recycle', JSON.stringify(recycle));
-  loadFilesApp(); loadDrives(); loadRecycleBin();
-}
-
-function permanentDelete(i){
-  if(!confirm("Permanent delete?")) return;
-  let recycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
-  recycle.splice(i,1);
-  localStorage.setItem('real_recycle', JSON.stringify(recycle));
-  loadDrives(); loadRecycleBin();
-}
-
-function loadPhoto(input){
-  let file=input.files[0];
-  if(!file) return;
-  let reader = new FileReader();
-  reader.onload = function(e){
-    let img = document.getElementById('photoPrev');
-    if(img) img.src = e.target.result;
-    try{
-      localStorage.setItem('real_photo_'+Date.now(), e.target.result);
-      if(typeof realFiles!== 'undefined'){
-        realFiles.push({name:file.name, size:file.size});
-        localStorage.setItem('real_files', JSON.stringify(realFiles));
-      }
-    }catch(e){}
-    // ✅ OK DONE POPUP - GREEN!
-    let toast = document.createElement('div');
-    toast.style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#008000;color:#fff;padding:15px;border:2px outset #fff;z-index:9999;text-align:center;font-family:Tahoma";
-    toast.innerHTML=`✅ OK DONE!<br>${file.name}<br>${(file.size/1024/1024).toFixed(2)} MB`;
-    document.body.appendChild(toast);
-    setTimeout(()=>{ toast.remove(); loadDrives(); loadFilesApp(); },1500);
-  };
-  reader.readAsDataURL(file);
-};
-  reader.readAsDataURL(file);
-}
+let realFiles=JSON.parse(localStorage.getItem('real_files')||'[]');
+async function loadDrives(){let info=document.getElementById('driveInfo'); if(!info) return; let used=0; realFiles.forEach(f=>used+=f.size||0); let usedMB=(used/1024/1024).toFixed(2); info.innerHTML=`<b>C: Drive</b><br>Used: ${usedMB} MB<br>Files: ${realFiles.length}<br><div style="border:1px solid #000;height:12px"><div style="background:blue;height:100%;width:${Math.min(usedMB/10*100,100)}%"></div></div>`;}
+function handleFiles(files){for(let f of files){realFiles.push({name:f.name,size:f.size});} localStorage.setItem('real_files',JSON.stringify(realFiles)); loadDrives(); loadFilesApp(); alert('✅ OK DONE! '+files.length+' files');}
+function loadFilesApp(){let body=document.getElementById('filesBody'); if(!body) return; if(realFiles.length==0){body.innerHTML='No files'; return;} body.innerHTML=realFiles.map((f,i)=>`<div style="display:flex;justify-content:space-between;padding:6px;border-bottom:1px solid #ccc">${f.name} (${(f.size/1024/1024).toFixed(2)} MB) <button onclick="deleteRealFile(${i})" style="background:red;color:#fff">X</button></div>`).join('');}
+function deleteRealFile(i){let rec=JSON.parse(localStorage.getItem('real_recycle')||'[]'); rec.push(realFiles[i]); realFiles.splice(i,1); localStorage.setItem('real_files',JSON.stringify(realFiles)); localStorage.setItem('real_recycle',JSON.stringify(rec)); loadFilesApp(); loadDrives(); loadRecycleBin();}
+function loadRecycleBin(){let rec=JSON.parse(localStorage.getItem('real_recycle')||'[]'); let box=document.getElementById('recycleList'); if(!box) return; if(rec.length==0){box.innerHTML='Empty'; return;} box.innerHTML=rec.map((f,i)=>`<div style="display:flex;justify-content:space-between;padding:5px;border-bottom:1px solid #ccc">🗑️ ${f.name} <span><button onclick="restoreFile(${i})">Restore</button> <button onclick="permanentDelete(${i})">Del</button></span></div>`).join('');}
+function restoreFile(i){let rec=JSON.parse(localStorage.getItem('real_recycle')||'[]'); realFiles.push(rec[i]); rec.splice(i,1); localStorage.setItem('real_files',JSON.stringify(realFiles)); localStorage.setItem('real_recycle',JSON.stringify(rec)); loadFilesApp(); loadDrives(); loadRecycleBin();}
+function permanentDelete(i){let rec=JSON.parse(localStorage.getItem('real_recycle')||'[]'); rec.splice(i,1); localStorage.setItem('real_recycle',JSON.stringify(rec)); loadRecycleBin(); loadDrives();}
+function emptyRecycle(){localStorage.setItem('real_recycle','[]'); loadRecycleBin(); loadDrives();}
+function restoreAll(){let rec=JSON.parse(localStorage.getItem('real_recycle')||'[]'); realFiles=realFiles.concat(rec); localStorage.setItem('real_files',JSON.stringify(realFiles)); localStorage.setItem('real_recycle','[]'); loadFilesApp(); loadDrives(); loadRecycleBin();}
+loadDrives();
 </script>
-</body>
-</html>
+</body></html>
