@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+⅚<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -153,36 +153,106 @@ function loadNotepad(){document.getElementById('notepadArea').value=localStorage
 function saveNotepad(){localStorage.setItem('real_notepad', document.getElementById('notepadArea').value); document.getElementById('noteStatus').innerText="Saved!"; setTimeout(()=>document.getElementById('noteStatus').innerText="",1500); }
 document.getElementById('notepadArea')?.addEventListener('input', ()=>{localStorage.setItem('real_notepad', document.getElementById('notepadArea').value)})
 
-// REAL FILE HANDLING
-let realFiles=JSON.parse(localStorage.getItem('real_files')||"[]");
-function handleFiles(files){for(let f of files){let r=new FileReader(); r.onload=(e)=>{realFiles.push({name:f.name,size:(f.size/1024).toFixed(1)+' KB', data:e.target.result}); localStorage.setItem('real_files', JSON.stringify(realFiles)); loadFilesApp();}; r.readAsDataURL(f);}}
-function loadFilesApp(){let body=document.getElementById('filesBody'); if(realFiles.length==0) body.innerHTML='<div>No files yet. Upload from My Computer.</div>'; else body.innerHTML=realFiles.map((f,i)=>`<div style="padding:8px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between"><span>📄 ${f.name} (${f.size})</span><button onclick="realFiles.splice(${i},1);localStorage.setItem('real_files',JSON.stringify(realFiles));loadFilesApp()" style="color:red">Delete</button></div>`).join(''); document.getElementById('fileList').innerHTML=body.innerHTML; }
+// REAL FILE HANDLING - FULL FIXED
+let realFiles = JSON.parse(localStorage.getItem('real_files') || '[]');
+let realRecycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
+
+function handleFiles(files){
+  for(let f of files){
+    let reader = new FileReader();
+    reader.onload = function(e){
+      try{
+        localStorage.setItem('real_file_'+Date.now()+'_'+f.name, e.target.result);
+        realFiles.push({name:f.name, size:f.size, data: e.target.result});
+        localStorage.setItem('real_files', JSON.stringify(realFiles.map(x=>({name:x.name,size:x.size})))); // size only save to avoid quota
+        loadDrives(); loadFilesApp(); loadPhotoList();
+      }catch(err){ alert("Storage full! "+err.message); }
+    };
+    reader.readAsDataURL(f);
+  }
+}
+
+function loadFilesApp(){
+  let body = document.getElementById('filesBody');
+  if(!body) return;
+  if(realFiles.length==0){ body.innerHTML="<p style='padding:10px'>No files</p>"; return; }
+  body.innerHTML = realFiles.map((f,i)=>`
+    <div style="display:flex;justify-content:space-between;padding:6px;border-bottom:1px solid #ccc;background:#fff">
+      <span>📄 ${f.name} (${(f.size/1024/1024).toFixed(2)} MB)</span>
+      <button onclick="deleteRealFile(${i})" style="background:#c00;color:#fff;border:1px outset #fff">X</button>
+    </div>
+  `).join('');
+}
+
+function deleteRealFile(i){
+  let files = JSON.parse(localStorage.getItem('real_files') || '[]');
+  let recycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
+  recycle.push(files[i]);
+  files.splice(i,1);
+  realFiles = files; // update global
+  localStorage.setItem('real_files', JSON.stringify(files));
+  localStorage.setItem('real_recycle', JSON.stringify(recycle));
+  loadFilesApp(); loadDrives(); loadRecycleBin();
+}
+
+function loadRecycleBin(){
+  let recycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
+  let box = document.getElementById('recycleList');
+  if(!box) return;
+  if(recycle.length==0){ box.innerHTML="<p style='padding:10px'>Recycle Bin empty</p>"; return; }
+  box.innerHTML = recycle.map((f,i)=>`
+    <div style="display:flex;justify-content:space-between;padding:5px;border-bottom:1px solid #ccc;background:#fff">
+      <span>🗑️ ${f.name}</span>
+      <span>
+        <button onclick="restoreFile(${i})">Restore</button>
+        <button onclick="permanentDelete(${i})">Delete</button>
+      </span>
+    </div>
+  `).join('');
+}
+
+function restoreFile(i){
+  let recycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
+  let files = JSON.parse(localStorage.getItem('real_files') || '[]');
+  files.push(recycle[i]);
+  recycle.splice(i,1);
+  realFiles=files;
+  localStorage.setItem('real_files', JSON.stringify(files));
+  localStorage.setItem('real_recycle', JSON.stringify(recycle));
+  loadFilesApp(); loadDrives(); loadRecycleBin();
+}
+
+function permanentDelete(i){
+  if(!confirm("Permanent delete?")) return;
+  let recycle = JSON.parse(localStorage.getItem('real_recycle') || '[]');
+  recycle.splice(i,1);
+  localStorage.setItem('real_recycle', JSON.stringify(recycle));
+  loadDrives(); loadRecycleBin();
+}
+
 function loadPhoto(input){
   let file=input.files[0];
   if(!file) return;
-
   let reader = new FileReader();
   reader.onload = function(e){
-    // Photo preview logic (tari je hoy te)
-    let img = document.getElementById('photoPreview');
+    let img = document.getElementById('photoPrev');
     if(img) img.src = e.target.result;
-
-    // Local storage ma save kar jeti real storage vadhe
     try{
-      localStorage.setItem('real_photo_'+Date.now(), file.name);
+      localStorage.setItem('real_photo_'+Date.now(), e.target.result);
       if(typeof realFiles!== 'undefined'){
         realFiles.push({name:file.name, size:file.size});
         localStorage.setItem('real_files', JSON.stringify(realFiles));
       }
     }catch(e){}
-
     // ✅ OK DONE POPUP - GREEN!
     let toast = document.createElement('div');
-    toast.style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#000;color:#0f0;border:2px solid #0f0;padding:18px 28px;border-radius:12px;z-index:999999;font-weight:bold;text-align:center;box-shadow:0 0 25px #0f0;font-family:Segoe UI";
-    toast.innerHTML=`✅ OK DONE!<br>${file.name}<br><span style="color:white;font-size:12px">${(file.size/1024/1024).toFixed(2)} MB Uploaded</span>`;
+    toast.style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#008000;color:#fff;padding:15px;border:2px outset #fff;z-index:9999;text-align:center;font-family:Tahoma";
+    toast.innerHTML=`✅ OK DONE!<br>${file.name}<br>${(file.size/1024/1024).toFixed(2)} MB`;
     document.body.appendChild(toast);
-    setTimeout(()=>{ toast.remove(); loadDrives(); if(typeof loadFilesApp==='function') loadFilesApp(); }, 2000);
+    setTimeout(()=>{ toast.remove(); loadDrives(); loadFilesApp(); },1500);
   };
+  reader.readAsDataURL(file);
+};
   reader.readAsDataURL(file);
 }
 </script>
