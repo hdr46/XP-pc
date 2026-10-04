@@ -2,48 +2,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Windows XP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:url('https://i.imgur.com/Zk6TR5k.jpg') no-repeat center center fixed;background-size:cover;font-family:Tahoma;width:100vw;height:100vh;overflow:hidden}
-#desktop{position:absolute;top:10px;left:10px}
-.icon{width:80px;text-align:center;color:white;font-size:12px;text-shadow:1px 1px 2px black;margin-bottom:20px;cursor:pointer}
-.ico{width:52px;height:52px;margin:0 auto 5px auto;display:flex;align-items:center;justify-content:center;font-size:28px;border-radius:8px;box-shadow:2px 2px 6px rgba(0,0,0,0.6)}
-.c1{background:linear-gradient(#7ED0FF,#1E90FF)} .c2{background:linear-gradient(#FFD76B,#FFA500)} .c3{background:linear-gradient(#FF9B6B,#FF4500)} .c4{background:linear-gradient(#8CFF8C,#2E8B57)}
-
-.window{position:absolute;top:15%;left:10%;width:80%;height:60%;background:#ECE9D8;border:3px solid #0055E5;border-radius:6px 6px 0 0;display:none;z-index:20;box-shadow:5px 5px 15px black}
-.title{background:linear-gradient(#3C81F5,#0055E5);color:white;padding:5px 8px;display:flex;justify-content:space-between;font-weight:bold;font-size:13px;cursor:move}
-.close{background:red;padding:0 8px;border-radius:3px;cursor:pointer}
-.content{padding:12px;font-size:13px;height:calc(100% - 28px);overflow:auto;background:white;margin:3px}
-.item{padding:8px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:8px}
+#desktop{position:absolute;top:8px;left:8px}
+.icon{width:70px;text-align:center;color:white;font-size:10px;text-shadow:1px 1px 2px black;margin-bottom:16px;cursor:pointer}
+.icon img{width:42px;height:42px;display:block;margin:0 auto 3px auto;filter:drop-shadow(1px 1px 2px black)}
+.window{position:absolute;top:12%;left:8%;width:84%;max-height:65%;background:#ECE9D8;border:3px solid #0055E5;border-radius:7px 7px 0 0;display:none;z-index:50;box-shadow:5px 5px 20px black}
+.title{background:linear-gradient(#3C81F5,#0055E5);color:white;padding:6px 8px;display:flex;justify-content:space-between;font-weight:bold;font-size:13px}
+.close{background:#E81123;padding:0 9px;border-radius:3px;cursor:pointer}
+.content{padding:10px;background:white;margin:3px;max-height:300px;overflow:auto}
+.item{padding:10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px;font-size:13px}
 .item:active{background:#E5F3FF}
-
 #taskbar{position:fixed;bottom:0;left:0;width:100%;height:34px;background:linear-gradient(#3C81F5,#245EDC);border-top:2px solid #6BB3FF;display:flex;align-items:center;z-index:999}
-#startBtn{background:linear-gradient(#3DBB3D,#1F7A1F);color:white;padding:0 18px;height:26px;display:flex;align-items:center;font-weight:bold;font-style:italic;border-radius:0 12px 12px 0;box-shadow:2px 0 4px rgba(0,0,0,0.5)}
+#startBtn{background:linear-gradient(#3DBB3D,#1E7A1F);color:white;padding:0 18px;height:26px;display:flex;align-items:center;font-weight:bold;font-style:italic;border-radius:0 12px 12px 0}
 </style>
 </head>
 <body>
 <div id="desktop">
-  <div class="icon" onclick="openWin('win1')"><div class="ico c1">💻</div>My Computer</div>
-  <div class="icon" onclick="openWin('win2')"><div class="ico c2">📁</div>My Files</div>
-  <div class="icon" onclick="openWin('win3')"><div class="ico c3">🖼️</div>Photos</div>
-  <div class="icon" onclick="openWin('win4')"><div class="ico c4">💾</div>USB Drive</div>
+  <div class="icon" onclick="openW('w1')"><img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png">My Computer</div>
+  <div class="icon" onclick="openW('w2')"><img src="https://win98icons.alexmeub.com/icons/png/directory_open-5.png">My Files</div>
+  <div class="icon" onclick="openW('w3')"><img src="https://win98icons.alexmeub.com/icons/png/jpeg_image-5.png">Photos</div>
+  <div class="icon" onclick="openW('w4')"><img src="https://win98icons.alexmeub.com/icons/png/hard_disk-5.png">USB Drive</div>
 </div>
 
-<div id="win1" class="window"><div class="title"><span>💻 My Computer</span><span class="close" onclick="closeWin('win1')">X</span></div><div class="content"><div class="item">💿 Local Disk (C:) - 120GB Free</div><div class="item">💿 Local Disk (D:) - 250GB Free</div><div class="item">📀 DVD Drive (E:)</div><div class="item">🔌 USB Drive (F:) - Click to open</div></div></div>
-
-<div id="win2" class="window"><div class="title"><span>📁 My Files</span><span class="close" onclick="closeWin('win2')">X</span></div><div class="content"><div class="item">📄 Resume.pdf</div><div class="item">📄 Project.docx</div><div class="item">🎵 Songs folder</div><div class="item">🎬 Movies folder</div></div></div>
-
-<div id="win3" class="window"><div class="title"><span>🖼️ Photos</span><span class="close" onclick="closeWin('win3')">X</span></div><div class="content"><div class="item">🌄 Vacation.jpg</div><div class="item">👪 Family.jpg</div><div class="item">🎂 Birthday.jpg</div><div class="item">📷 Camera Photos</div></div></div>
-
-<div id="win4" class="window"><div class="title"><span>💾 USB Drive</span><span class="close" onclick="closeWin('win4')">X</span></div><div class="content"><div class="item">📁 No USB Connected</div><div class="item">💡 Connect USB to view files</div></div></div>
+<div id="w1" class="window"><div class="title"><span>💻 My Computer</span><span class="close" onclick="closeW('w1')">X</span></div><div class="content"><div class="item">💿 Local Disk (C:) - 45 GB free</div><div class="item">💿 Data (D:) - 120 GB free</div><div class="item">🔌 USB Drive (F:)</div></div></div>
+<div id="w2" class="window"><div class="title"><span>📁 My Files</span><span class="close" onclick="closeW('w2')">X</span></div><div class="content"><div class="item">📄 Resume.pdf</div><div class="item">🎵 My Songs</div><div class="item">🎬 Videos</div></div></div>
+<div id="w3" class="window"><div class="title"><span>🖼️ Photos</span><span class="close" onclick="closeW('w3')">X</span></div><div class="content"><div class="item">🌄 Vacation.jpg</div><div class="item">👪 Family.jpg</div><div class="item">🎂 Birthday.png</div></div></div>
+<div id="w4" class="window"><div class="title"><span>💾 USB Drive</span><span class="close" onclick="closeW('w4')">X</span></div><div class="content"><div class="item">📁 No USB - Connect USB</div></div></div>
 
 <div id="taskbar"><div id="startBtn">start</div></div>
-
 <script>
-function openWin(id){document.querySelectorAll('.window').forEach(w=>w.style.display='none');document.getElementById(id).style.display='block';}
-function closeWin(id){document.getElementById(id).style.display='none';}
+function openW(id){document.querySelectorAll('.window').forEach(w=>w.style.display='none');document.getElementById(id).style.display='block';}
+function closeW(id){document.getElementById(id).style.display='none';}
 </script>
 </body>
 </html>
