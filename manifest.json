@@ -1,15 +1,23 @@
 {
+  "id": "/XP-pc/",
   "name": "Windows XP - 8GB 500GB",
-  "short_name": "My XP Laptop",
-  "start_url": "./",
+  "short_name": "XP Laptop",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#008080",
   "theme_color": "#245edb",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/226/226777.png",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Windows_XP_logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Windows_XP_logo.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
