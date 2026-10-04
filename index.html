@@ -6,22 +6,21 @@
 <title>Windows XP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:url('https://i.imgur.com/Zk6TR5k.jpg') no-repeat center center fixed;background-size:cover;font-family:Segoe UI,Tahoma;width:100vw;height:100vh;overflow:hidden}
-#desktop{position:absolute;top:12px;left:12px}
-.icon{width:78px;text-align:center;color:white;font-size:11px;text-shadow:1px 1px 3px black;margin-bottom:20px;cursor:pointer}
-.ico{width:48px;height:48px;margin:0 auto 6px auto;display:flex;align-items:center;justify-content:center;font-size:28px;border-radius:6px;box-shadow:1px 2px 5px rgba(0,0,0,0.5)}
-.c1{background:linear-gradient(#87CEEB,#1E90FF)} .c2{background:linear-gradient(#FFD700,#FFA500)} .c3{background:linear-gradient(#FF7F50,#FF4500)} .c4{background:linear-gradient(#90EE90,#228B22)}
-#taskbar{position:fixed;bottom:0;left:0;width:100%;height:36px;background:#1F1F1F;display:flex;align-items:center;z-index:99}
-#startBtn{background:#0078D4;color:white;padding:0 18px;height:100%;display:flex;align-items:center;font-weight:600;font-size:14px}
+body{background:url('https://i.imgur.com/Zk6TR5k.jpg') no-repeat center center fixed;background-size:cover;font-family:Tahoma;width:100vw;height:100vh;overflow:hidden}
+#desktop{position:absolute;top:10px;left:10px}
+.icon{width:80px;text-align:center;color:white;font-size:12px;text-shadow:1px 1px 2px black;margin-bottom:22px}
+.box{width:48px;height:48px;margin:0 auto 5px auto;background:#ECE9D8;border:2px solid #000;display:flex;align-items:center;justify-content:center;font-size:32px;border-radius:4px;box-shadow:2px 2px 4px black}
+#taskbar{position:fixed;bottom:0;left:0;width:100%;height:32px;background:linear-gradient(#3C81F5,#245EDC);border-top:2px solid #6BBAFF;display:flex;align-items:center;z-index:999}
+#startBtn{background:linear-gradient(#3DBB3D,#1F7A1F);color:white;padding:0 18px;height:24px;display:flex;align-items:center;font-weight:bold;font-style:italic;border-radius:0 10px 10px 0;box-shadow:1px 1px 3px black}
 </style>
 </head>
 <body>
 <div id="desktop">
-  <div class="icon"><div class="ico c1">💻</div>My Computer</div>
-  <div class="icon"><div class="ico c2">📁</div>My Files</div>
-  <div class="icon"><div class="ico c3">🖼️</div>Photos</div>
-  <div class="icon"><div class="ico c4">💾</div>USB Drive</div>
+  <div class="icon"><div class="box">🖥️</div>My Computer</div>
+  <div class="icon"><div class="box">📁</div>My Files</div>
+  <div class="icon"><div class="box">🌄</div>Photos</div>
+  <div class="icon"><div class="box">🔌</div>USB Drive</div>
 </div>
-<div id="taskbar"><div id="startBtn">⊞ Start</div></div>
+<div id="taskbar"><div id="startBtn">start</div></div>
 </body>
 </html>
