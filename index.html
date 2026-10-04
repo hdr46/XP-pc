@@ -157,7 +157,34 @@ document.getElementById('notepadArea')?.addEventListener('input', ()=>{localStor
 let realFiles=JSON.parse(localStorage.getItem('real_files')||"[]");
 function handleFiles(files){for(let f of files){let r=new FileReader(); r.onload=(e)=>{realFiles.push({name:f.name,size:(f.size/1024).toFixed(1)+' KB', data:e.target.result}); localStorage.setItem('real_files', JSON.stringify(realFiles)); loadFilesApp();}; r.readAsDataURL(f);}}
 function loadFilesApp(){let body=document.getElementById('filesBody'); if(realFiles.length==0) body.innerHTML='<div>No files yet. Upload from My Computer.</div>'; else body.innerHTML=realFiles.map((f,i)=>`<div style="padding:8px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between"><span>📄 ${f.name} (${f.size})</span><button onclick="realFiles.splice(${i},1);localStorage.setItem('real_files',JSON.stringify(realFiles));loadFilesApp()" style="color:red">Delete</button></div>`).join(''); document.getElementById('fileList').innerHTML=body.innerHTML; }
-function loadPhoto(input){let file=input.files[0]; let r=new FileReader(); r.onload=(e)=>{let grid=document.getElementById('photoGrid'); grid.innerHTML+=`<div style="border:1px solid #ccc"><img src="${e.target.result}" style="width:100%"><div style="padding:4px;font-size:11px">${file.name}</div></div>`}; r.readAsDataURL(file);}
+function loadPhoto(input){
+  let file=input.files[0];
+  if(!file) return;
+
+  let reader = new FileReader();
+  reader.onload = function(e){
+    // Photo preview logic (tari je hoy te)
+    let img = document.getElementById('photoPreview');
+    if(img) img.src = e.target.result;
+
+    // Local storage ma save kar jeti real storage vadhe
+    try{
+      localStorage.setItem('real_photo_'+Date.now(), file.name);
+      if(typeof realFiles!== 'undefined'){
+        realFiles.push({name:file.name, size:file.size});
+        localStorage.setItem('real_files', JSON.stringify(realFiles));
+      }
+    }catch(e){}
+
+    // ✅ OK DONE POPUP - GREEN!
+    let toast = document.createElement('div');
+    toast.style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#000;color:#0f0;border:2px solid #0f0;padding:18px 28px;border-radius:12px;z-index:999999;font-weight:bold;text-align:center;box-shadow:0 0 25px #0f0;font-family:Segoe UI";
+    toast.innerHTML=`✅ OK DONE!<br>${file.name}<br><span style="color:white;font-size:12px">${(file.size/1024/1024).toFixed(2)} MB Uploaded</span>`;
+    document.body.appendChild(toast);
+    setTimeout(()=>{ toast.remove(); loadDrives(); if(typeof loadFilesApp==='function') loadFilesApp(); }, 2000);
+  };
+  reader.readAsDataURL(file);
+}
 </script>
 </body>
 </html>
