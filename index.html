@@ -2,63 +2,128 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows XP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Windows 7 - Real OS</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:url('https://i.imgur.com/Zk6TR5k.jpg') no-repeat center center fixed;background-size:cover;font-family:Tahoma;width:100vw;height:100vh;overflow:hidden;touch-action:manipulation}
-#desktop{position:absolute;top:10px;left:10px;z-index:10}
-.icon{width:75px;text-align:center;color:white;font-size:10px;text-shadow:1px 1px 2px black;margin-bottom:18px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.icon img{width:44px;height:44px;display:block;margin:0 auto 4px auto;pointer-events:none}
-.window{position:fixed;top:10%;left:5%;width:90%;background:#ECE9D8;border:3px solid #0055E5;border-radius:8px 8px 0 0;display:none;z-index:100;box-shadow:5px 5px 20px black}
-.title{background:linear-gradient(#3C81F5,#0055E5);color:white;padding:8px 10px;display:flex;justify-content:space-between;font-weight:bold}
-.close{background:red;padding:2px 10px;border-radius:4px}
-.content{background:white;margin:3px;padding:5px}
-.item{padding:12px;border-bottom:1px solid #eee;font-size:14px}
-#taskbar{position:fixed;bottom:0;left:0;width:100%;height:34px;background:linear-gradient(#3C81F5,#245EDC);border-top:2px solid #6BB3FF;display:flex;align-items:center;z-index:200}
-#startBtn{background:linear-gradient(#3DBB3D,#1E7A1F);color:white;padding:0 20px;height:26px;display:flex;align-items:center;font-weight:bold;font-style:italic;border-radius:0 12px 12px 0}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:url('https://i.imgur.com/Zk6TR5k.jpg') no-repeat center center fixed;background-size:cover;font-family:Segoe UI,Tahoma;height:100vh;width:100vw;overflow:hidden;touch-action:none}
+#desktop{position:absolute;top:10px;left:10px}
+.dicon{width:78px;text-align:center;color:white;font-size:11px;text-shadow:1px 1px 3px #000;margin-bottom:20px;cursor:pointer}
+.dicon.box{width:48px;height:48px;margin:0 auto 4px auto;background:#ffffff33;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:2px 2px 8px #0009}
+
+/* WINDOW */
+.win{position:fixed;background:#f0f0f0;border:1px solid #3c7fb1;border-radius:6px 6px 0 0;box-shadow:0 0 20px #000c;display:none;z-index:100;overflow:hidden}
+.win.active{display:block}
+.tbar{background:linear-gradient(#a3d1ff,#2a6dc9);color:white;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:13px;cursor:move}
+.close{width:32px;height:20px;background:#e81123;border-radius:3px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.wbody{background:white;height:calc(100% - 32px);overflow:auto}
+
+/* START MENU - TARA PIC JEVO */
+#startMenu{position:fixed;bottom:36px;left:0;width:400px;max-width:92vw;height:420px;background:linear-gradient(to bottom, #1a3a5a 0%, #2a5a8a 100%);border:1px solid #3a7fbf;border-radius:6px 6px 0 0;display:none;z-index:500;box-shadow:5px -5px 20px #000a;overflow:hidden}
+#startMenu.open{display:flex}
+.s-left{width:60%;background:white;padding:6px}
+.s-right{width:40%;background:linear-gradient(#2a5a8a,#1a3a5a);color:white;padding:10px}
+.s-item{padding:8px 8px;display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;border-radius:3px}
+.s-item:hover{background:#e5f3ff}
+.s-right-item{padding:9px 6px;font-size:13px;cursor:pointer;border-radius:3px}
+.s-right-item:hover{background:#ffffff22}
+#searchBox{width:95%;margin:6px;padding:7px;border:1px solid #aaa;border-radius:3px}
+
+/* TASKBAR */
+#taskbar{position:fixed;bottom:0;left:0;width:100%;height:36px;background:linear-gradient(#5aa8ff 0%, #245edc 50%, #1a4fc4 100%);border-top:1px solid #6bb3ff;display:flex;align-items:center;justify-content:space-between;z-index:600}
+#startBtn{background:linear-gradient(#4ac44a,#1e7a1f);color:white;padding:0 18px;height:30px;display:flex;align-items:center;gap:6px;font-weight:bold;border-radius:15px;margin-left:4px;box-shadow:1px 1px 3px #000a;cursor:pointer}
+#clock{color:white;font-size:11px;text-align:right;padding-right:10px;line-height:14px}
+
+/* APPS */
+.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px}
+.calc-btn{height:42px;background:linear-gradient(#fff,#ddd);border:1px solid #999;border-radius:3px;font-size:16px;cursor:pointer}
+.calc-btn:active{background:#aaccff}
+#calcDisplay{width:100%;height:50px;background:#fff;border:2px inset #ccc;text-align:right;font-size:24px;padding:8px;box-sizing:border-box}
+
+canvas{touch-action:none;cursor:crosshair}
 </style>
 </head>
 <body>
+
 <div id="desktop">
-  <div class="icon" id="i1"><img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png">My Computer</div>
-  <div class="icon" id="i2"><img src="https://win98icons.alexmeub.com/icons/png/directory_open-5.png">My Files</div>
-  <div class="icon" id="i3"><img src="https://win98icons.alexmeub.com/icons/png/jpeg_image-5.png">Photos</div>
-  <div class="icon" id="i4"><img src="https://win98icons.alexmeub.com/icons/png/hard_disk-5.png">USB Drive</div>
+  <div class="dicon" onclick="openApp('computer')"><div class="box">💻</div>My Computer</div>
+  <div class="dicon" onclick="openApp('files')"><div class="box">📁</div>My Files</div>
+  <div class="dicon" onclick="openApp('recycle')"><div class="box">🗑️</div>Recycle Bin</div>
 </div>
 
-<div id="w1" class="window"><div class="title"><span>My Computer</span><span class="close" id="c1">X</span></div><div class="content"><div class="item">💿 Local Disk (C:) 45GB free</div><div class="item">💿 Data (D:) 120GB free</div></div></div>
-<div id="w2" class="window"><div class="title"><span>My Files</span><span class="close" id="c2">X</span></div><div class="content"><div class="item">📄 Resume.pdf</div><div class="item">🎵 Songs</div></div></div>
-<div id="w3" class="window"><div class="title"><span>Photos</span><span class="close" id="c3">X</span></div><div class="content"><div class="item">🌄 Vacation.jpg</div><div class="item">👪 Family.jpg</div></div></div>
-<div id="w4" class="window"><div class="title"><span>USB Drive</span><span class="close" id="c4">X</span></div><div class="content"><div class="item">📁 Connect USB</div></div></div>
+<!-- START MENU (TARA PIC JEVO) -->
+<div id="startMenu">
+  <div class="s-left">
+    <div class="s-item" onclick="openApp('snip')"><span style="font-size:20px">✂️</span> Snipping Tool</div>
+    <div class="s-item" onclick="openApp('calc')"><span style="font-size:20px">🧮</span> Calculator</div>
+    <div class="s-item" onclick="openApp('sticky')"><span style="font-size:20px">📝</span> Sticky Notes</div>
+    <div class="s-item" onclick="openApp('paint')"><span style="font-size:20px">🎨</span> Paint</div>
+    <div class="s-item" onclick="openApp('notepad')"><span style="font-size:20px">📄</span> Notepad</div>
+    <div class="s-item" onclick="openApp('files')"><span style="font-size:20px">📂</span> File Manager</div>
+    <div style="margin-top:10px"><input id="searchBox" placeholder="Search programs and files"></div>
+  </div>
+  <div class="s-right">
+    <div style="text-align:center;margin:10px"><div style="width:50px;height:50px;background:orange;border-radius:6px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:28px">🌻</div><div style="margin-top:6px">user</div></div>
+    <div class="s-right-item" onclick="openApp('files')">Documents</div>
+    <div class="s-right-item" onclick="openApp('photos')">Pictures</div>
+    <div class="s-right-item" onclick="openApp('files')">Music</div>
+    <div class="s-right-item" onclick="openApp('computer')">Computer</div>
+    <div class="s-right-item" onclick="openApp('control')">Control Panel</div>
+    <div style="position:absolute;bottom:10px;left:10px;right:10px;display:flex;gap:6px"><button style="padding:6px 12px;border-radius:12px;border:1px solid #0005;cursor:pointer" onclick="location.reload()">🔴 Shut down</button></div>
+  </div>
+</div>
 
-<div id="taskbar"><div id="startBtn">start</div></div>
+<!-- WINDOWS -->
+<div id="win-computer" class="win" style="top:8%;left:3%;width:94%;height:70%"><div class="tbar"><span>💻 My Computer</span><span class="close" onclick="closeApp('computer')">✕</span></div><div class="wbody" style="padding:10px"><div style="font-weight:bold;margin-bottom:8px">Hard Disk Drives</div><div id="driveInfo" style="display:grid;gap:8px"></div><div style="margin-top:12px"><button onclick="document.getElementById('realFile').click()" style="padding:8px 12px">📤 Upload Real File from Phone</button><input type="file" id="realFile" style="display:none" multiple onchange="handleFiles(this.files)"></div><div id="fileList"></div></div></div>
+
+<div id="win-calc" class="win" style="top:15%;left:10%;width:260px;height:360px"><div class="tbar"><span>🧮 Calculator - REAL</span><span class="close" onclick="closeApp('calc')">✕</span></div><div class="wbody"><input id="calcDisplay" readonly value="0"><div class="calc-grid"><button class="calc-btn" onclick="calcClear()">C</button><button class="calc-btn" onclick="calcDel()">⌫</button><button class="calc-btn" onclick="calcInput('%')">%</button><button class="calc-btn" onclick="calcInput('/')">÷</button><button class="calc-btn" onclick="calcInput('7')">7</button><button class="calc-btn" onclick="calcInput('8')">8</button><button class="calc-btn" onclick="calcInput('9')">9</button><button class="calc-btn" onclick="calcInput('*')">×</button><button class="calc-btn" onclick="calcInput('4')">4</button><button class="calc-btn" onclick="calcInput('5')">5</button><button class="calc-btn" onclick="calcInput('6')">6</button><button class="calc-btn" onclick="calcInput('-')">-</button><button class="calc-btn" onclick="calcInput('1')">1</button><button class="calc-btn" onclick="calcInput('2')">2</button><button class="calc-btn" onclick="calcInput('3')">3</button><button class="calc-btn" onclick="calcInput('+')">+</button><button class="calc-btn" onclick="calcInput('0')">0</button><button class="calc-btn" onclick="calcInput('.')">.</button><button class="calc-btn" style="grid-column:span 2;background:#8ec6ff" onclick="calcEqual()">=</button></div></div></div>
+
+<div id="win-paint" class="win" style="top:5%;left:2%;width:96%;height:78%"><div class="tbar"><span>🎨 Paint - REAL Drawing</span><span class="close" onclick="closeApp('paint')">✕</span></div><div class="wbody" style="display:flex;flex-direction:column"><div style="padding:4px;background:#eee;display:flex;gap:6px;align-items:center"><input type="color" id="pColor" value="#000000"><input type="range" id="pSize" min="1" max="20" value="3"><button onclick="clearCanvas()" style="padding:4px 8px">Clear</button><button onclick="saveCanvas()" style="padding:4px 8px">Save Image</button></div><canvas id="pCanvas" style="flex:1;background:white"></canvas></div></div>
+
+<div id="win-notepad" class="win" style="top:10%;left:5%;width:90%;height:65%"><div class="tbar"><span>📝 Notepad - REAL Save</span><span class="close" onclick="closeApp('notepad')">✕</span></div><div class="wbody" style="display:flex;flex-direction:column"><div style="padding:4px;background:#eee"><button onclick="saveNotepad()" style="padding:4px 10px">💾 Save</button><span id="noteStatus" style="font-size:11px;margin-left:10px;color:green"></span></div><textarea id="notepadArea" style="flex:1;width:100%;border:none;padding:10px;resize:none;font-family:monospace" placeholder="Type here... real notepad, auto saves!"></textarea></div></div>
+
+<div id="win-photos" class="win" style="top:12%;left:5%;width:90%;height:65%"><div class="tbar"><span>🖼️ Photos - REAL</span><span class="close" onclick="closeApp('photos')">✕</span></div><div class="wbody" style="padding:10px"><input type="file" accept="image/*" onchange="loadPhoto(this)" style="margin-bottom:10px"><div id="photoGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"></div></div></div>
+
+<div id="win-files" class="win" style="top:10%;left:5%;width:90%;height:65%"><div class="tbar"><span>📁 File Manager - REAL</span><span class="close" onclick="closeApp('files')">✕</span></div><div class="wbody" id="filesBody" style="padding:10px"></div></div>
+
+<div id="taskbar"><div id="startBtn" onclick="toggleStart()"><span style="font-size:18px">🪟</span> Start</div><div id="clock"><div id="time"></div><div id="date"></div></div></div>
 
 <script>
-function openW(id){document.querySelectorAll('.window').forEach(w=>w.style.display='none');document.getElementById(id).style.display='block';}
-function closeW(id){document.getElementById(id).style.display='none';}
+// CLOCK
+function updateClock(){let d=new Date();document.getElementById('time').innerText=d.toLocaleTimeString();document.getElementById('date').innerText=d.toLocaleDateString();} setInterval(updateClock,1000); updateClock();
 
-document.getElementById('i1').addEventListener('click', ()=>openW('w1'));
-document.getElementById('i2').addEventListener('click', ()=>openW('w2'));
-document.getElementById('i3').addEventListener('click', ()=>openW('w3'));
-document.getElementById('i4').addEventListener('click', ()=>openW('w4'));
+// WINDOW SYSTEM
+function openApp(id){document.querySelectorAll('.win').forEach(w=>w.style.display='none');document.getElementById('win-'+id).style.display='block';document.getElementById('startMenu').classList.remove('open'); if(id=='computer') loadDrives(); if(id=='paint') initPaint(); if(id=='notepad') loadNotepad(); if(id=='files') loadFilesApp();}
+function closeApp(id){document.getElementById('win-'+id).style.display='none';}
+function toggleStart(){document.getElementById('startMenu').classList.toggle('open');}
 
-document.getElementById('i1').addEventListener('touchstart', (e)=>{e.preventDefault();openW('w1');},{passive:false});
-document.getElementById('i2').addEventListener('touchstart', (e)=>{e.preventDefault();openW('w2');},{passive:false});
-document.getElementById('i3').addEventListener('touchstart', (e)=>{e.preventDefault();openW('w3');},{passive:false});
-document.getElementById('i4').addEventListener('touchstart', (e)=>{e.preventDefault();openW('w4');},{passive:false});
+// REAL COMPUTER INFO
+function loadDrives(){let info=document.getElementById('driveInfo'); let mem=navigator.deviceMemory||'Unknown'; info.innerHTML=`<div style="border:1px solid #ccc;padding:10px;border-radius:5px">💾 Local Disk (C:) - ${mem}GB RAM<br><small>Browser: ${navigator.userAgent.slice(0,40)}...</small></div><div style="border:1px solid #ccc;padding:10px;border-radius:5px">📱 Phone Storage - ${navigator.storage? 'Available' : 'Ready'}<br><small>Platform: ${navigator.platform}</small></div>`}
 
-document.getElementById('c1').addEventListener('click', ()=>closeW('w1'));
-document.getElementById('c2').addEventListener('click', ()=>closeW('w2'));
-document.getElementById('c3').addEventListener('click', ()=>closeW('w3'));
-document.getElementById('c4').addEventListener('click', ()=>closeW('w4'));
+// REAL CALCULATOR
+let calcVal=""; let display=document.getElementById('calcDisplay');
+function calcInput(v){if(calcVal=="0"&&v!="." ) calcVal=""; calcVal+=v; display.value=calcVal;}
+function calcClear(){calcVal=""; display.value="0";}
+function calcDel(){calcVal=calcVal.slice(0,-1); display.value=calcVal||"0";}
+function calcEqual(){try{calcVal=eval(calcVal).toString(); display.value=calcVal;}catch{ display.value="Error"; calcVal=""; }}
+
+// REAL PAINT
+let canvas, ctx, drawing=false;
+function initPaint(){canvas=document.getElementById('pCanvas'); ctx=canvas.getContext('2d'); canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; ctx.fillStyle="white"; ctx.fillRect(0,0,canvas.width,canvas.height); canvas.onmousedown=(e)=>{drawing=true; draw(e)}; canvas.onmousemove=draw; canvas.onmouseup=()=>drawing=false; canvas.ontouchstart=(e)=>{drawing=true; draw(e.touches[0]); e.preventDefault()}; canvas.ontouchmove=(e)=>{draw(e.touches[0]); e.preventDefault()}; canvas.ontouchend=()=>drawing=false;}
+function draw(e){if(!drawing) return; let rect=canvas.getBoundingClientRect(); let x=e.clientX-rect.left; let y=e.clientY-rect.top; ctx.fillStyle=document.getElementById('pColor').value; ctx.beginPath(); ctx.arc(x,y,document.getElementById('pSize').value,0,Math.PI*2); ctx.fill();}
+function clearCanvas(){ctx.fillStyle="white"; ctx.fillRect(0,0,canvas.width,canvas.height);}
+function saveCanvas(){let a=document.createElement('a'); a.download='paint.png'; a.href=canvas.toDataURL(); a.click();}
+
+// REAL NOTEPAD
+function loadNotepad(){document.getElementById('notepadArea').value=localStorage.getItem('real_notepad')||"";}
+function saveNotepad(){localStorage.setItem('real_notepad', document.getElementById('notepadArea').value); document.getElementById('noteStatus').innerText="Saved!"; setTimeout(()=>document.getElementById('noteStatus').innerText="",1500); }
+document.getElementById('notepadArea')?.addEventListener('input', ()=>{localStorage.setItem('real_notepad', document.getElementById('notepadArea').value)})
+
+// REAL FILE HANDLING
+let realFiles=JSON.parse(localStorage.getItem('real_files')||"[]");
+function handleFiles(files){for(let f of files){let r=new FileReader(); r.onload=(e)=>{realFiles.push({name:f.name,size:(f.size/1024).toFixed(1)+' KB', data:e.target.result}); localStorage.setItem('real_files', JSON.stringify(realFiles)); loadFilesApp();}; r.readAsDataURL(f);}}
+function loadFilesApp(){let body=document.getElementById('filesBody'); if(realFiles.length==0) body.innerHTML='<div>No files yet. Upload from My Computer.</div>'; else body.innerHTML=realFiles.map((f,i)=>`<div style="padding:8px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between"><span>📄 ${f.name} (${f.size})</span><button onclick="realFiles.splice(${i},1);localStorage.setItem('real_files',JSON.stringify(realFiles));loadFilesApp()" style="color:red">Delete</button></div>`).join(''); document.getElementById('fileList').innerHTML=body.innerHTML; }
+function loadPhoto(input){let file=input.files[0]; let r=new FileReader(); r.onload=(e)=>{let grid=document.getElementById('photoGrid'); grid.innerHTML+=`<div style="border:1px solid #ccc"><img src="${e.target.result}" style="width:100%"><div style="padding:4px;font-size:11px">${file.name}</div></div>`}; r.readAsDataURL(file);}
 </script>
 </body>
 </html>
-<!-- Bas icon wala part change karo -->
-<div id="desktop">
-  <div class="icon" id="i1"><div style="font-size:38px">💻</div>My Computer</div>
-  <div class="icon" id="i2"><div style="font-size:38px">📁</div>My Files</div>
-  <div class="icon" id="i3"><div style="font-size:38px">🖼️</div>Photos</div>
-  <div class="icon" id="i4"><div style="font-size:38px">💾</div>USB Drive</div>
-</div>
