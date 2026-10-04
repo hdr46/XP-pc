@@ -89,3 +89,8 @@ document.addEventListener('click',e=>{if(!e.target.closest('#startBtn')&&!e.targ
 </html>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#245edb">
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js');
+}
+</script>
