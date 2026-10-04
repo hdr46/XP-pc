@@ -124,11 +124,23 @@ function toggleStart(){document.getElementById('startMenu').classList.toggle('op
     }
   }catch(e){ quotaGB=10; usedGB=0.1; freeGB=9.9; usedMB=100; freeMB=10140; }
 
-  let per = quotaGB>0 ? (usedGB/quotaGB*100).toFixed(1) : 0; 
+    let per = quotaGB>0 ? (usedGB/quotaGB*100).toFixed(1) : 0;
+  
+  info.innerHTML = `
+  <div style="border:2px inset #fff;padding:8px;background:#fff;margin-bottom:8px">
+    <div style="display:flex;gap:8px"><div style="font-size:32px">💾</div><div style="flex:1">
+    <b>Local Disk (C:)</b><br>
+    <div style="border:1px solid #000;height:14px"><div style="background:#00a;height:100%;width:${per}%"></div></div>
+    <span style="font-size:11px">${freeGB} GB free of ${quotaGB} GB</span><br>
+    <span style="font-size:11px">Used: ${usedGB} GB (${usedMB} MB) ${per}% | Free: ${freeGB} GB (${freeMB} MB)</span><br>
+    <span style="font-size:11px;color:green">Battery: ${battery} (Real) | RAM: ${ram}GB | CPU: ${cores} Core</span>
+    </div></div>
+  </div>
+  <div style="border:2px inset #fff;padding:8px;background:#fff;margin-bottom:8px"><b>💿 Data (D:)</b> - 50GB Backup</div>
+  <div style="border:2px inset #fff;padding:8px;background:#fff"><b>🖼️ My Photos (${JSON.parse(localStorage.getItem('real_files')||'[]').length} files)</b></div>
+  <div style="margin-top:8px;background:#000;color:#0f0;padding:6px;font-size:11px">🔋 REAL STATUS | ${battery} | RAM: ${ram}GB | Uploaded: ${usedMB} MB</div>`;
+}
 function calcClear(){calcVal=""; display.value="0";}
-function calcDel(){calcVal=calcVal.slice(0,-1); display.value=calcVal||"0";}
-function calcEqual(){try{calcVal=eval(calcVal).toString(); display.value=calcVal;}catch{ display.value="Error"; calcVal=""; }}
-
 // REAL PAINT
 let canvas, ctx, drawing=false;
 function initPaint(){canvas=document.getElementById('pCanvas'); ctx=canvas.getContext('2d'); canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; ctx.fillStyle="white"; ctx.fillRect(0,0,canvas.width,canvas.height); canvas.onmousedown=(e)=>{drawing=true; draw(e)}; canvas.onmousemove=draw; canvas.onmouseup=()=>drawing=false; canvas.ontouchstart=(e)=>{drawing=true; draw(e.touches[0]); e.preventDefault()}; canvas.ontouchmove=(e)=>{draw(e.touches[0]); e.preventDefault()}; canvas.ontouchend=()=>drawing=false;}
