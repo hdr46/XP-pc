@@ -1,31 +1,22 @@
 {
   "id": "/XP-pc/",
-  "name": "Windows XP PC",
+  "name": "XP PC - Windows XP Simulator",
   "short_name": "XP PC",
-  "description": "Real working Windows XP computer inside your phone! Calculator, Paint, Notepad, Music Player - all working",
+  "description": "Real working Windows XP computer inside your phone!",
   "start_url": "/XP-pc/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#008080",
   "theme_color": "#000080",
-  "categories": ["utilities", "productivity"],
-  "screenshots": [
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "https://placehold.co/192x192/png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "https://placehold.co/512x512/png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
