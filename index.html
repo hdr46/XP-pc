@@ -2,64 +2,125 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <link rel="manifest" href="manifest.json">
-<title>XP PC</title>
+<title>XP PC - Real Computer</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma}
 html,body{width:100%;height:100%;overflow:hidden;position:fixed;background:#000}
-#desktop{width:100%;height:calc(100% - 30px);background:url('https://wallpaperswide.com/download/windows_xp_bliss-wallpaper-1920x1080.jpg') center/cover;padding:8px;display:flex;flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:4px}
-.d-icon{width:74px;height:74px;display:flex;flex-direction:column;align-items:center;color:#fff;font-size:10px;text-shadow:1px 1px 2px #000;text-align:center}
-.d-icon img{width:32px;height:32px;margin-bottom:4px}
-#taskbar{position:fixed;bottom:0;left:0;width:100%;height:30px;background:linear-gradient(#3c81f5,#245edb,#1941a5);display:flex;align-items:center;z-index:999}
-#startBtn{height:30px;padding:0 16px 0 10px;background:linear-gradient(#3fa13f,#1a7a1a);color:#fff;font-weight:bold;font-style:italic;border-radius:0 10px 10px 0;display:flex;align-items:center;gap:4px;cursor:pointer}
-.window{position:absolute;top:60px;left:20px;width:90%;max-width:460px;height:60%;background:#ece9d8;border:2px solid #0058e6;border-top:28px solid #0058e6;border-radius:6px;display:none;flex-direction:column;z-index:100}
-.window.active{display:flex}
-.w-title{position:absolute;top:-28px;left:0;right:0;height:28px;display:flex;justify-content:space-between;align-items:center;padding:0 8px;color:#fff;font-size:12px;font-weight:bold}
-.w-close{background:red;border:1px solid #fff;width:18px;height:18px;display:flex;align-items:center;justify-content:center;border-radius:3px;cursor:pointer}
-.w-content{flex:1;background:#fff;overflow:auto;padding:8px}
-#startMenu{position:fixed;bottom:30px;left:0;width:300px;height:400px;background:#fff;border:2px solid #0a46a3;display:none;flex-direction:column;z-index:998;border-radius:8px 8px 0 0}
+#desktop{width:100%;height:100%;background:url('https://wallpaperswide.com/download/windows_xp_bliss-wallpaper-1920x1080.jpg') center/cover no-repeat;padding:8px 0 0 8px;display:flex;flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:12px 8px;padding-bottom:40px}
+.icon{width:78px;height:84px;display:flex;flex-direction:column;align-items:center;color:white;font-size:11px;text-align:center;text-shadow:1px 1px 3px black;cursor:pointer;padding:4px;border-radius:4px}
+.icon:hover{background:rgba(255,255,255,.15);outline:1px dotted rgba(255,255,255,.6)}
+.icon img{width:42px;height:42px;margin-bottom:4px;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.5))}
+.icon.sel{background:rgba(49,106,197,.6);outline:1px dotted white}
+#taskbar{position:fixed;bottom:0;left:0;width:100%;height:34px;background:linear-gradient(to bottom,#3c81f5 0%,#245edb 12%,#245edb 80%,#1941A5 100%);display:flex;align-items:center;z-index:99999;border-top:1px solid #5a8cf0}
+#startBtn{height:34px;padding:0 18px 0 12px;background:linear-gradient(to bottom,#3fa43f,#1d6e1d);color:white;font-weight:bold;font-style:italic;font-size:15px;display:flex;align-items:center;gap:6px;border-radius:0 12px 12px 0;box-shadow:inset 0 1px 1px rgba(255,255,255,.5);cursor:pointer;text-shadow:1px 1px 1px #0a3d0a}
+.task-apps{flex:1;display:flex;gap:4px;margin-left:10px;overflow:hidden}
+.task-app{height:26px;padding:0 10px;background:linear-gradient(#2a5bc2,#1a3f9a);border:1px solid #0a2a7a;color:white;font-size:11px;display:flex;align-items:center;gap:5px;border-radius:3px;max-width:160px}
+#clock{margin-left:auto;margin-right:12px;background:#0b46a3;color:white;padding:4px 10px;font-size:12px;border-left:1px solid #1a5ac2;border-right:1px solid #1a5ac2}
+.window{position:absolute;top:10%;left:5%;width:90%;max-width:520px;height:68%;background:#ece9d8;border:2px solid #0055e5;border-top:none;border-radius:7px 7px 0 0;display:none;flex-direction:column;box-shadow:6px 6px 20px rgba(0,0,0,.6);overflow:hidden}
+.window.open{display:flex}
+.w-bar{height:30px;background:linear-gradient(to bottom,#3c81f5,#0a46a3);display:flex;align-items:center;justify-content:space-between;padding:0 6px 0 10px;color:white;font-weight:bold;font-size:13px;cursor:move;user-select:none}
+.w-btns{display:flex;gap:3px}
+.wb{width:22px;height:22px;border:1px solid white;border-radius:3px;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer}
+.wb.close{background:radial-gradient(#ff5a5a,#b00000)}
+.wb.min{background:radial-gradient(#6ea8ff,#245edb)}
+.w-content{flex:1;background:white;overflow:hidden;display:flex;flex-direction:column}
+#startMenu{position:fixed;bottom:34px;left:0;width:360px;height:460px;background:white;border:2px solid #0a46a3;border-bottom:none;border-radius:8px 8px 0 0;display:none;flex-direction:column;z-index:99998;box-shadow:5px -2px 20px rgba(0,0,0,.5)}
 #startMenu.open{display:flex}
+.s-user{height:64px;background:linear-gradient(to right,#3c81f5,#1941A5);display:flex;align-items:center;gap:12px;padding:0 14px;color:white;font-weight:bold;font-size:14px;border-radius:6px 6px 0 0}
+.s-mid{flex:1;display:flex}
+.s-left{flex:1.4;background:white;padding:8px 4px}
+.s-right{flex:1;background:#d2e4fb;padding:8px 4px;border-left:1px solid #99b9e5}
+.s-item{padding:8px 10px;font-size:12.5px;display:flex;gap:9px;align-items:center;border-radius:3px;cursor:pointer}
+.s-item:hover{background:#316ac5;color:white}
+.s-item img{width:20px;height:20px}
 </style>
 </head>
 <body>
 <div id="desktop">
-<div class="d-icon" ondblclick="openApp('computer')"><img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png">My Computer</div>
-<div class="d-icon" ondblclick="openApp('alarm')"><img src="https://win98icons.alexmeub.com/icons/png/clock-0.png">Alarm</div>
-<div class="d-icon" ondblclick="openApp('browser')"><img src="https://win98icons.alexmeub.com/icons/png/msie1-4.png">Internet</div>
-<div class="d-icon" ondblclick="openApp('paint')"><img src="https://win98icons.alexmeub.com/icons/png/paint-0.png">Paint</div>
-<div class="d-icon" ondblclick="openApp('files')"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png">My Files</div>
-<div class="d-icon" ondblclick="window.open('https://youtube.com')"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YouTube</div>
-<div class="d-icon" ondblclick="openApp('cmd')"><img src="https://win98icons.alexmeub.com/icons/png/console_prompt-0.png">CMD</div>
-<div class="d-icon" ondblclick="openApp('bsod')"><img src="https://win98icons.alexmeub.com/icons/png/msg_error-0.png">BSOD</div>
-<div class="d-icon" ondblclick="openApp('gallery')"><img src="https://win98icons.alexmeub.com/icons/png/camera-4.png">Gallery</div>
-<div class="d-icon" ondblclick="window.open('https://web.whatsapp.com')"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">WhatsApp</div>
-<div class="d-icon" ondblclick="openApp('taskmgr')"><img src="https://win98icons.alexmeub.com/icons/png/computer_taskmgr-0.png">Task Mgr</div>
-<div class="d-icon"><img src="https://win98icons.alexmeub.com/icons/png/lock_screen-0.png">Lock</div>
-<div class="d-icon"><img src="https://win98icons.alexmeub.com/icons/png/camera-3.png">Camera</div>
-<div class="d-icon" ondblclick="window.open('https://facebook.com')"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">Facebook</div>
-<div class="d-icon"><img src="https://win98icons.alexmeub.com/icons/png/media_player-0.png">Winamp</div>
-<div class="d-icon"><img src="https://win98icons.alexmeub.com/icons/png/calendar-0.png">Calendar</div>
-<div class="d-icon" ondblclick="window.open('https://instagram.com')"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">Instagram</div>
-<div class="d-icon"><img src="https://win98icons.alexmeub.com/icons/png/game_mine_1-0.png">Mines</div>
+<div class="icon" ondblclick="openWin('computer')"><img src="https://img.icons8.com/color/48/my-computer.png">My Computer</div>
+<div class="icon" ondblclick="openWin('files')"><img src="https://img.icons8.com/color/48/folder-invoices--v1.png">My Files</div>
+<div class="icon" ondblclick="openWin('internet')"><img src="https://img.icons8.com/color/48/internet-explorer.png">Internet</div>
+<div class="icon" ondblclick="openWin('paint')"><img src="https://img.icons8.com/color/48/paint-palette.png">Paint</div>
+<div class="icon" ondblclick="openWin('notepad')"><img src="https://img.icons8.com/color/48/notepad.png">Notepad</div>
+<div class="icon" ondblclick="openWin('calc')"><img src="https://img.icons8.com/color/48/calculator.png">Calculator</div>
+<div class="icon" ondblclick="openWin('gallery')"><img src="https://img.icons8.com/color/48/picture.png">Gallery</div>
+<div class="icon" ondblclick="openWin('calendar')"><img src="https://img.icons8.com/color/48/calendar--v1.png">Calendar</div>
+<div class="icon" ondblclick="openWin('cmd')"><img src="https://img.icons8.com/color/48/console.png">CMD</div>
+<div class="icon" ondblclick="openWin('taskmgr')"><img src="https://img.icons8.com/color/48/task-manager.png">Task Mgr</div>
+<div class="icon" ondblclick="window.open('https://youtube.com','_blank')"><img src="https://img.icons8.com/color/48/youtube-play.png">YouTube</div>
+<div class="icon" ondblclick="window.open('https://web.whatsapp.com','_blank')"><img src="https://img.icons8.com/color/48/whatsapp--v1.png">WhatsApp</div>
+<div class="icon" ondblclick="window.open('https://facebook.com','_blank')"><img src="https://img.icons8.com/color/48/facebook.png">Facebook</div>
+<div class="icon" ondblclick="window.open('https://instagram.com','_blank')"><img src="https://img.icons8.com/color/48/instagram-new--v1.png">Instagram</div>
+<div class="icon" ondblclick="window.open('https://google.com','_blank')"><img src="https://img.icons8.com/color/48/chrome--v1.png">Chrome</div>
 </div>
 
-<div id="startMenu"><div style="height:56px;background:linear-gradient(#3c81f5,#1941a5);color:#fff;padding:10px;font-weight:bold;border-radius:6px 6px 0 0">XP User</div><div style="padding:8px"><div onclick="openApp('browser')">🌐 Internet</div><div onclick="window.open('https://youtube.com')">▶️ YouTube</div><div onclick="openApp('paint')">🎨 Paint</div><div onclick="openApp('computer')">💻 My Computer</div></div></div>
+<div id="startMenu">
+<div class="s-user"><img src="https://i.pravatar.cc/48" style="border-radius:6px;border:2px solid white;width:42px"> HDR - Administrator</div>
+<div class="s-mid">
+<div class="s-left">
+<div class="s-item" onclick="openWin('internet')"><img src="https://img.icons8.com/color/20/internet-explorer.png"> Internet Explorer</div>
+<div class="s-item" onclick="window.open('https://youtube.com')"><img src="https://img.icons8.com/color/20/youtube-play.png"> YouTube</div>
+<div class="s-item" onclick="window.open('https://web.whatsapp.com')"><img src="https://img.icons8.com/color/20/whatsapp--v1.png"> WhatsApp</div>
+<div class="s-item" onclick="openWin('paint')"><img src="https://img.icons8.com/color/20/paint-palette.png"> Paint</div>
+<div class="s-item" onclick="openWin('notepad')"><img src="https://img.icons8.com/color/20/notepad.png"> Notepad</div>
+<div class="s-item" onclick="openWin('calc')"><img src="https://img.icons8.com/color/20/calculator.png"> Calculator</div>
+<div class="s-item" onclick="openWin('gallery')"><img src="https://img.icons8.com/color/20/picture.png"> Gallery</div>
+</div>
+<div class="s-right">
+<div class="s-item" onclick="openWin('computer')">💻 My Computer</div>
+<div class="s-item" onclick="openWin('files')">📁 My Documents</div>
+<div class="s-item" onclick="openWin('taskmgr')">📊 Task Manager</div>
+<div class="s-item">⚙️ Control Panel</div>
+<div class="s-item" onclick="location.reload()">🔄 Restart</div>
+<div class="s-item" onclick="alert('XP PC - Real PC by HDR')">❓ About</div>
+</div>
+</div>
+</div>
 
-<div id="win-computer" class="window"><div class="w-title"><span>My Computer - Real</span><div class="w-close" onclick="closeApp('computer')">X</div></div><div class="w-content"><b>Drives:</b><br><br>💾 Local Disk (C:) - 40GB free<br>💿 DVD Drive (D:)<br>📁 My Documents</div></div>
-<div id="win-files" class="window"><div class="w-title"><span>My Files - Real</span><div class="w-close" onclick="closeApp('files')">X</div></div><div class="w-content">📁 Documents<br>🖼️ Photos<br>🎵 Music<br>📄 notes.txt (real)</div></div>
-<div id="win-gallery" class="window"><div class="w-title"><span>Gallery</span><div class="w-close" onclick="closeApp('gallery')">X</div></div><div class="w-content"><img src="https://wallpaperswide.com/download/windows_xp_bliss-wallpaper-1920x1080.jpg" style="width:100%"></div></div>
-<div id="win-paint" class="window"><div class="w-title"><span>Paint - Real Working</span><div class="w-close" onclick="closeApp('paint')">X</div></div><div class="w-content"><canvas id="c" width="400" height="250" style="border:1px solid #000;width:100%"></canvas><br><small>Finger thi draw kar!</small></div></div>
-<div id="win-browser" class="window"><div class="w-title"><span>Internet Explorer</span><div class="w-close" onclick="closeApp('browser')">X</div></div><div class="w-content" style="padding:0"><iframe src="https://www.bing.com" style="width:100%;height:100%;border:none"></iframe></div></div>
-<div id="win-cmd" class="window"><div class="w-title"><span>CMD - Real</span><div class="w-close" onclick="closeApp('cmd')">X</div></div><div class="w-content" style="background:#000;color:#0f0;font-family:monospace">Microsoft Windows XP<br>C:\> dir<br>C:\> real pc ready!</div></div>
-<div id="win-alarm" class="window" style="width:260px"><div class="w-title"><span>Alarm</span><div class="w-close" onclick="closeApp('alarm')">X</div></div><div class="w-content" id="clock2" style="font-size:22px;text-align:center"></div></div>
+<!-- WINDOWS -->
+<div id="w-computer" class="window" style="top:8%;left:3%"><div class="w-bar"><span>💻 My Computer</span><div class="w-btns"><div class="wb min">_</div><div class="wb close" onclick="closeWin('computer')">X</div></div></div><div class="w-content" style="padding:12px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="border:1px solid #ccc;padding:10px;text-align:center">💾<br><b>Local Disk (C:)</b><br>40GB free</div><div style="border:1px solid #ccc;padding:10px;text-align:center">💿<br><b>DVD Drive (D:)</b></div></div><br><b>Documents:</b><br><div onclick="openWin('files')" style="padding:8px;background:#eef;cursor:pointer;margin-top:6px">📁 My Files - 12 files</div></div></div>
 
-<div id="taskbar"><div id="startBtn" onclick="document.getElementById('startMenu').classList.toggle('open')">🪟 start</div><div id="clk" style="margin-left:auto;margin-right:12px;color:#fff;font-size:11px"></div></div>
+<div id="w-files" class="window"><div class="w-bar"><span>📁 My Files</span><div class="w-btns"><div class="wb close" onclick="closeWin('files')">X</div></div></div><div class="w-content" style="padding:10px"><div style="display:flex;gap:8px;flex-wrap:wrap"><div onclick="openWin('paint')" style="width:80px;text-align:center;padding:8px;border:1px solid #ddd">🖼️<br>photo.jpg</div><div onclick="openWin('notepad')" style="width:80px;text-align:center;padding:8px;border:1px solid #ddd">📄<br>note.txt</div><div style="width:80px;text-align:center;padding:8px;border:1px solid #ddd">🎵<br>song.mp3</div></div></div></div>
+
+<div id="w-paint" class="window" style="height:75%"><div class="w-bar"><span>🎨 Paint - Real</span><div class="w-btns"><div class="wb close" onclick="closeWin('paint')">X</div></div></div><div class="w-content"><div style="display:flex;gap:6px;padding:6px;background:#ece9d8"><input type="color" id="col" value="#000000"><button onclick="ctx.clearRect(0,0,canvas.width,canvas.height)">Clear</button><span style="font-size:11px">Finger thi draw kar</span></div><canvas id="canvas" width="600" height="320" style="flex:1;background:white;touch-action:none;border-top:1px solid #aaa"></canvas></div></div>
+
+<div id="w-notepad" class="window"><div class="w-bar"><span>📝 Notepad - Real</span><div class="w-btns"><div class="wb close" onclick="closeWin('notepad')">X</div></div></div><div class="w-content"><textarea id="note" style="width:100%;height:100%;border:none;outline:none;padding:10px;font-family:Consolas,monospace;font-size:13px">Welcome to REAL XP PC!
+This is real Notepad.
+Lakhvanu chalu kar - save thai jase!</textarea></div></div>
+
+<div id="w-internet" class="window" style="width:94%;max-width:640px;height:75%"><div class="w-bar"><span>🌐 Internet Explorer - Real Browser</span><div class="w-btns"><div class="wb close" onclick="closeWin('internet')">X</div></div></div><div class="w-content"><div style="display:flex;padding:4px;background:#ece9d8;gap:4px"><input id="url" value="https://www.bing.com" style="flex:1;padding:4px"><button onclick="document.getElementById('browser').src=document.getElementById('url').value">Go</button></div><iframe id="browser" src="https://www.bing.com" style="flex:1;width:100%;border:none"></iframe></div></div>
+
+<div id="w-calc" class="window" style="width:260px;height:360px;left:20%;top:20%"><div class="w-bar"><span>🔢 Calculator</span><div class="w-btns"><div class="wb close" onclick="closeWin('calc')">X</div></div></div><div class="w-content" style="padding:10px;background:#ece9d8"><input id="calcD" style="width:100%;height:44px;text-align:right;font-size:22px;padding:6px" readonly><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px"><button onclick="cP('7')">7</button><button onclick="cP('8')">8</button><button onclick="cP('9')">9</button><button onclick="cP('/')">/</button><button onclick="cP('4')">4</button><button onclick="cP('5')">5</button><button onclick="cP('6')">6</button><button onclick="cP('*')">×</button><button onclick="cP('1')">1</button><button onclick="cP('2')">2</button><button onclick="cP('3')">3</button><button onclick="cP('-')">-</button><button onclick="cP('0')">0</button><button onclick="cP('.')">.</button><button onclick="cE()" style="background:#3c81f5;color:white">=</button><button onclick="cP('+')">+</button></div><button onclick="cC()" style="width:100%;margin-top:8px;height:32px">CLEAR</button></div></div>
+
+<div id="w-cmd" class="window"><div class="w-bar"><span>⬛ Command Prompt</span><div class="w-btns"><div class="wb close" onclick="closeWin('cmd')">X</div></div></div><div class="w-content" style="background:black;color:#0f0;padding:10px;font-family:Consolas,monospace;font-size:12px">Microsoft Windows XP [Version 5.1.2600]<br>(C) Copyright 1985-2001 Microsoft Corp.<br><br>C:\Documents and Settings\HDR> dir<br> Volume in drive C is XP_PC<br><br> Directory of C:\<br>05/10/2026 10:18 PM &lt;DIR&gt; Program Files<br>05/10/2026 10:18 PM &lt;DIR&gt; My Files<br>05/10/2026 10:18 PM 2,048 real_pc.exe<br><br>C:\> <span style="animation:blink 1s infinite">_</span></div></div>
+
+<div id="w-gallery" class="window"><div class="w-bar"><span>🖼️ Gallery - Real</span><div class="w-btns"><div class="wb close" onclick="closeWin('gallery')">X</div></div></div><div class="w-content" style="padding:0"><img src="https://wallpaperswide.com/download/windows_xp_bliss-wallpaper-1920x1080.jpg" style="width:100%;height:100%;object-fit:contain"></div></div>
+
+<div id="w-calendar" class="window" style="width:300px;height:340px"><div class="w-bar"><span>📅 Calendar</span><div class="w-btns"><div class="wb close" onclick="closeWin('calendar')">X</div></div></div><div class="w-content" style="padding:12px;text-align:center"><div id="cal" style="font-size:14px"></div></div></div>
+
+<div id="w-taskmgr" class="window" style="width:360px"><div class="w-bar"><span>📊 Task Manager</span><div class="w-btns"><div class="wb close" onclick="closeWin('taskmgr')">X</div></div></div><div class="w-content" style="padding:10px;font-size:12px"><b>Running Applications:</b><div id="taskList" style="margin-top:8px"></div><br>CPU Usage: 14%<br>Memory: 384 MB / 1024 MB</div></div>
+
+<div id="taskbar"><div id="startBtn" onclick="toggleStart()">🪟 start</div><div class="task-apps" id="taskApps"></div><div id="clock"></div></div>
+
 <script>
-function openApp(id){document.getElementById('win-'+id).style.display='flex';document.getElementById('win-'+id).classList.add('active');document.getElementById('startMenu').classList.remove('open')}
-function closeApp(id){document.getElementById('win-'+id).style.display='none'}
-setInterval(()=>{let t=new Date().toLocaleTimeString();document.getElementById('clk').innerText=t;let e=document.getElementById('clock2');if(e)e.innerText=t},1000)
-let cv=document.getElementById('c'),cx=cv.getContext('2d'),d=false;cv.addEventListener('pointerdown',e=>{d=true;cx.beginPath();cx.moveTo(e.offsetX,e.offsetY)});cv.addEventListener('pointermove',e=>{if(!d)return;cx.lineTo(e.offsetX,e.offsetY);cx.stroke()});cv.addEventListener('pointerup',()=>d=false);
+let z=100, tasks=[];
+function openWin(id){let w=document.getElementById('w-'+id);w.classList.add('open');w.style.zIndex=++z;if(!tasks.includes(id)){tasks.push(id);renderTasks()}document.getElementById('startMenu').classList.remove('open');if(id=='calendar')renderCal()}
+function closeWin(id){document.getElementById('w-'+id).classList.remove('open');tasks=tasks.filter(t=>t!=id);renderTasks()}
+function toggleStart(){document.getElementById('startMenu').classList.toggle('open')}
+function renderTasks(){let h=document.getElementById('taskApps');h.innerHTML=tasks.map(t=>`<div class="task-app" onclick="openWin('${t}')">${t}</div>`).join('');let l=document.getElementById('taskList');if(l)l.innerHTML=tasks.map(t=>`✅ ${t} <button onclick="closeWin('${t}')" style="float:right">End Task</button><br>`).join('')}
+setInterval(()=>{let d=new Date();document.getElementById('clock').innerText=d.toLocaleTimeString()+' | '+d.toLocaleDateString()},1000)
+// Paint
+let canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d'),drawing=false;ctx.lineWidth=3;ctx.lineCap='round';
+canvas.addEventListener('pointerdown',e=>{drawing=true;let r=canvas.getBoundingClientRect();ctx.beginPath();ctx.moveTo(e.clientX-r.left,e.clientY-r.top)});canvas.addEventListener('pointermove',e=>{if(!drawing)return;let r=canvas.getBoundingClientRect();ctx.strokeStyle=document.getElementById('col').value;ctx.lineTo(e.clientX-r.left,e.clientY-r.top);ctx.stroke()});canvas.addEventListener('pointerup',()=>drawing=false)
+// Calc
+let expr='';function cP(v){expr+=v;document.getElementById('calcD').value=expr}function cE(){try{expr=eval(expr).toString();document.getElementById('calcD').value=expr}catch{expr=''}}function cC(){expr='';document.getElementById('calcD').value=''}
+function renderCal(){let d=new Date();document.getElementById('cal').innerHTML=`<h3>${d.toLocaleString('default',{month:'long'})} ${d.getFullYear()}</h3><br><big>${d.toDateString()}</big><br><br>Time: ${d.toLocaleTimeString()}<br><br>📅 Today is ${d.toLocaleDateString('en-US',{weekday:'long'})}`}
+document.getElementById('desktop').addEventListener('click',e=>{if(!e.target.closest('#startMenu')&&!e.target.closest('#startBtn'))document.getElementById('startMenu').classList.remove('open');document.querySelectorAll('.icon').forEach(i=>i.classList.remove('sel'));})
+document.querySelectorAll('.icon').forEach(ic=>{ic.addEventListener('click',()=>{document.querySelectorAll('.icon').forEach(i=>i.classList.remove('sel'));ic.classList.add('sel')})})
+// Drag windows
+document.querySelectorAll('.w-bar').forEach(bar=>{let win=bar.parentElement,isDrag=false,sx,sy;bar.addEventListener('pointerdown',e=>{isDrag=true;sx=e.clientX-win.offsetLeft;sy=e.clientY-win.offsetTop;win.style.zIndex=++z});window.addEventListener('pointermove',e=>{if(!isDrag)return;win.style.left=(e.clientX-sx)+'px';win.style.top=(e.clientY-sy)+'px'});window.addEventListener('pointerup',()=>isDrag=false)})
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js')
 </script>
 </body>
