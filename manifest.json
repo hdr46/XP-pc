@@ -8,6 +8,7 @@
   "orientation": "any",
   "background_color": "#008080",
   "theme_color": "#000080",
+  "categories": ["utilities", "productivity", "entertainment"],
   "icons": [
     {
       "src": "https://placehold.co/192x192/png",
@@ -20,6 +21,27 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://placehold.co/1280x720/png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "https://placehold.co/720x1280/png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open XP PC",
+      "url": "/XP-pc/",
+      "icons": [{ "src": "https://placehold.co/192x192/png", "sizes": "192x192" }]
     }
   ]
 }
