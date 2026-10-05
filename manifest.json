@@ -1,11 +1,12 @@
 {
-  "name": "XP PC - Windows XP Simulator",
+  "name": "XP PC",
   "short_name": "XP PC",
-  "start_url": "/XP-pc/",
-  "scope": "/XP-pc/",
+  "id": "/XP-pc/",
+  "start_url": "./",
+  "scope": "./",
   "display": "fullscreen",
-  "display_override": ["fullscreen", "standalone", "window-controls-overlay"],
-  "orientation": "any",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
   "background_color": "#008080",
   "theme_color": "#000080",
   "icons": [
