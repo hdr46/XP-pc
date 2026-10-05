@@ -5,6 +5,7 @@
   "start_url": "/XP-pc/",
   "scope": "/XP-pc/",
   "display": "standalone",
+  "display_override": ["standalone", "fullscreen"],
   "orientation": "landscape",
   "background_color": "#008080",
   "theme_color": "#008080",
