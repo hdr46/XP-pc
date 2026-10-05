@@ -1,74 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#008080">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>XP Social - Real XP PC</title>
+<title>Win11 - XP PC</title>
 <style>
-* {box-sizing:border-box; -webkit-tap-highlight-color: transparent}
-html, body {margin:0;padding:0;width:100%;height:100%;position:fixed;overflow:hidden}
-body{background:#008080 url('https://i.imgur.com/Zk6TR5k.jpg') no-repeat center center / cover;font-family:'Tahoma',sans-serif;}
-.desktop{position:absolute;top:0;left:0;padding:12px;display:flex;flex-direction:column;gap:14px;flex-wrap:wrap;height:calc(100vh - 36px);width:100%;align-content:flex-start}
-.icon{width:82px;text-align:center;color:white;cursor:pointer;background:transparent!important;border:none!important;box-shadow:none!important;text-shadow:1px 1px 1px #000;font-size:12px;line-height:13px}
-.icon img{width:36px;height:36px;object-fit:contain;display:block;margin:0 auto 3px auto;filter:drop-shadow(1px 1px 1px #000)}
-.window{position:absolute;top:5%;left:2%;width:96%;max-width:420px;height:72%;background:#ECE9D8;border:2px solid #0A46A3;border-top:24px solid #0A46A3;display:none;flex-direction:column;box-shadow:6px 6px 20px rgba(0,0,0,.6);z-index:50;border-radius:4px 4px 0 0}
-.window.title{position:absolute;top:-24px;left:0;right:0;height:24px;color:white;display:flex;justify-content:space-between;align-items:center;padding:0 8px;font-weight:bold;font-size:13px}
-.content{flex:1;overflow:auto;background:white;padding:8px;color:black}
-.taskbar{position:fixed;bottom:0;left:0;width:100%;height:36px;background:linear-gradient(#3C81F5,#0A46A3);display:flex;align-items:center;padding:0 4px;z-index:100}
-.startBtn{background:linear-gradient(#3BA33B,#1F7A1F);color:white;border-radius:0 10px 10px 0;padding:4px 18px;font-weight:bold;font-style:italic;border:2px solid #2a9a2a}
-#s-noti{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-150px);width:92%;max-width:380px;background:#fff;border-radius:20px;padding:12px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 12px 35px rgba(0,0,0,.35);z-index:999999;transition:.55s cubic-bezier(.2,.8,.2,1)}
-#s-noti.show{transform:translateX(-50%) translateY(0)}
-#s-noti img{width:38px;height:38px;border-radius:9px}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif}
+body{width:100vw;height:100vh;overflow:hidden;background:url('https://wallpaperswide.com/download/windows_11_blue-wallpaper-1920x1080.jpg') center/cover no-repeat}
+.start-menu{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);width:96%;max-width:580px;background:rgba(243,243,243,0.95);backdrop-filter:blur(30px);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.4);padding:24px;display:none;flex-direction:column;z-index:100;animation:up .25s}
+.start-menu.open{display:flex}
+@keyframes up{from{transform:translateX(-50%) translateY(100px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+.search{width:100%;height:40px;background:white;border-radius:20px;border:1px solid #ddd;display:flex;align-items:center;padding:0 16px;gap:8px;margin-bottom:18px}
+.search input{border:none;outline:none;width:100%;font-size:14px}
+.pinned-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.app{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px;border-radius:6px;cursor:pointer}
+.app:active{background:rgba(0,0,0,.08)}
+.app img{width:32px;height:32px}
+.app span{font-size:11px;text-align:center}
+.rec-head{margin-top:20px}
+.rec-list{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.rec{display:flex;gap:10px;align-items:center;padding:6px;border-radius:6px}
+.rec img{width:28px;height:28px}
+.taskbar{position:fixed;bottom:0;left:0;width:100%;height:52px;background:rgba(243,243,243,0.85);backdrop-filter:blur(30px);display:flex;align-items:center;justify-content:center;gap:8px;border-top:1px solid rgba(0,0,0,.1)}
+.task-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:6px}
+.task-icon:hover{background:rgba(0,0,0,.08)}
+.task-icon img{width:24px;height:24px}
+.search-bar{width:200px;height:32px;background:white;border-radius:20px;display:flex;align-items:center;padding:0 12px;margin-right:12px}
 </style>
 </head>
 <body>
-<div class="desktop">
-  <div class="icon" onclick="openApp('My Computer','C: Drive<br>📁 Documents<br>📁 Pictures<br>📁 Music')"><img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png">My Computer</div>
-  <div class="icon" onclick="openApp('My Files','No files yet')"><img src="https://win98icons.alexmeub.com/icons/png/directory_open-5.png">My Files</div>
-  <div class="icon" onclick="openApp('Gallery','📸 Gallery Open')"><img src="https://win98icons.alexmeub.com/icons/png/image-0.png">Gallery</div>
-  <div class="icon" onclick="sNoti('Camera opened 📸')"><img src="https://win98icons.alexmeub.com/icons/png/camera-3.png">Camera</div>
-  <div class="icon" onclick="openApp('Calendar','📅 Today: '+new Date().toDateString())"><img src="https://win98icons.alexmeub.com/icons/png/calendar-1.png">Calendar</div>
-  <div class="icon" onclick="sNoti('Alarm set for 6:00 AM ⏰')"><img src="https://win98icons.alexmeub.com/icons/png/clock-5.png">Alarm</div>
-  <div class="icon" onclick="window.open('https://youtube.com')"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">YouTube</div>
-  <div class="icon" onclick="window.open('https://wa.me')"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">WhatsApp</div>
-  <div class="icon" onclick="window.open('https://facebook.com')"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">Facebook</div>
-  <div class="icon" onclick="window.open('https://instagram.com')"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">Instagram</div>
-  <div class="icon" onclick="window.open('https://google.com')"><img src="https://win98icons.alexmeub.com/icons/png/world-2.png">Internet</div>
-  <div class="icon" onclick="openWin('cmd')"><img src="https://win98icons.alexmeub.com/icons/png/console_prompt-0.png">CMD</div>
-  <div class="icon" onclick="openApp('Task Mgr','CPU: 14%<br>RAM: 342MB')"><img src="https://win98icons.alexmeub.com/icons/png/chart1-4.png">Task Mgr</div>
-  <div class="icon" onclick="openWin('winamp')"><img src="https://win98icons.alexmeub.com/icons/png/media_player-0.png">Winamp</div>
-  <div class="icon" onclick="openWin('mines')"><img src="https://win98icons.alexmeub.com/icons/png/minesweeper-1.png">Mines</div>
-  <div class="icon" onclick="openWin('paint')"><img src="https://win98icons.alexmeub.com/icons/png/paint_file-5.png">Paint</div>
-  <div class="icon" onclick="openWin('bsod')"><img src="https://cdn-icons-png.flaticon.com/512/3061/3061846.png">BSOD</div>
-  <div class="icon" onclick="sNoti('Phone Locked 🔒');document.body.style.filter='brightness(0)';setTimeout(()=>document.body.style.filter='',1000)"><img src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png">Lock</div>
+
+<div id="startMenu" class="start-menu">
+  <div class="search">🔍 <input placeholder="Search for apps, settings, and documents"></div>
+  <div class="pinned-head"><b>Pinned</b><button style="padding:4px 10px;border-radius:6px;border:1px solid #ddd">All ></button></div>
+  <div class="grid">
+    <div class="app" onclick="window.open('https://office.com')"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png"><span>Word</span></div>
+    <div class="app" onclick="window.open('https://microsoftedge.com')"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png"><span>Edge</span></div>
+    <div class="app" onclick="window.open('https://youtube.com')"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"><span>YouTube</span></div>
+    <div class="app" onclick="window.open('https://wa.me')"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"><span>WhatsApp</span></div>
+    <div class="app" onclick="window.open('https://facebook.com')"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"><span>Facebook</span></div>
+    <div class="app" onclick="window.open('https://instagram.com')"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"><span>Instagram</span></div>
+    <div class="app"><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png"><span>Settings</span></div>
+    <div class="app"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"><span>File Explorer</span></div>
+    <div class="app"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png"><span>Paint</span></div>
+    <div class="app"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721687.png"><span>Calculator</span></div>
+    <div class="app"><img src="https://cdn-icons-png.flaticon.com/512/3917/3917036.png"><span>Clock</span></div>
+    <div class="app"><img src="https://cdn-icons-png.flaticon.com/512/3665/3665987.png"><span>Notepad</span></div>
+  </div>
+  <div class="rec-head pinned-head"><b>Recommended</b><button style="padding:4px 10px;border-radius:6px;border:1px solid #ddd">More ></button></div>
+  <div class="rec-list">
+    <div class="rec"><img src="https://cdn-icons-png.flaticon.com/512/732/732220.png"><div><div style="font-size:13px">Grammarly: AI Writing</div><div style="font-size:11px;color:#666">Write faster. Right now.</div></div></div>
+    <div class="rec"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png"><div><div style="font-size:13px">Windows 11 Cheat Sheet</div><div style="font-size:11px;color:#666">2m ago</div></div></div>
+  </div>
+  <div style="margin-top:18px;border-top:1px solid #ddd;padding-top:12px;display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:8px"><img src="https://i.pravatar.cc/32" style="border-radius:50%"><span style="font-size:13px">Preston Gralla</span></div><span>⏻</span>
+  </div>
 </div>
-<div id="generic" class="window"><div class="title"><span id="gTitle">Window</span><span onclick="closeWin('generic')" style="background:red;padding:0 8px;border-radius:3px;cursor:pointer">X</span></div><div class="content" id="gContent"></div></div>
-<div id="paint" class="window"><div class="title"><span>Paint - Real Draw</span><span onclick="closeWin('paint')" style="background:red;padding:0 8px;border-radius:3px;cursor:pointer">X</span></div><div class="content"><canvas id="pcanvas" width="380" height="340" style="border:1px solid #888;touch-action:none"></canvas><br><input type="color" id="pcol" value="#000000"><button onclick="ctx.clearRect(0,0,380,340)">Clear</button></div></div>
-<div id="cmd" class="window"><div class="title"><span>CMD</span><span onclick="closeWin('cmd')" style="background:red;padding:0 8px;border-radius:3px;cursor:pointer">X</span></div><div class="content" style="background:black;color:#0f0;font-family:monospace"><div id="cmdOut">Microsoft Windows XP [Version 5.1]<br>C:\> type help<br></div><input id="cmdIn" style="width:100%;background:black;color:#0f0;border:none;outline:none" placeholder="Type dir, time, clear"></div></div>
-<div id="winamp" class="window"><div class="title"><span>Winamp</span><span onclick="closeWin('winamp')" style="background:red;padding:0 8px;border-radius:3px;cursor:pointer">X</span></div><div class="content" style="background:#111;color:#0f0;text-align:center;padding-top:30px"><b>♫ WINAMP ♫</b><br><br><button onclick="sNoti('Playing Music 🎵')">▶ Play</button></div></div>
-<div id="mines" class="window"><div class="title"><span>Minesweeper</span><span onclick="closeWin('mines')" style="background:red;padding:0 8px;border-radius:3px;cursor:pointer">X</span></div><div class="content" id="mineField" style="display:flex;flex-wrap:wrap"></div></div>
-<div id="bsod" class="window" style="background:#0000AA;color:white;border:none"><div class="content" style="background:#0000AA;color:white">A problem has been detected and Windows has been shut down...<br><br>*** STOP: 0x0000007E<br><br>Press any key to restart 😂</div></div>
-<div class="taskbar"><div class="startBtn" onclick="sNoti('Start Menu - XP Social 😎')">start</div><div style="margin-left:10px;font-size:12px;color:white" id="clock"></div></div>
-<div id="s-noti"><img src="icon-192.png" onerror="this.src='https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png'"><div><b style="font-size:13px">XP Social</b><br><span id="s-msg" style="font-size:12px;color:#555">System Ready</span></div></div>
+
+<div class="taskbar">
+  <div class="task-icon" onclick="toggleStart()"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png"></div>
+  <div class="search-bar">🔍 Search web &...</div>
+  <div class="task-icon"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></div>
+  <div class="task-icon"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png"></div>
+  <div class="task-icon"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></div>
+</div>
+
 <script>
-function openWin(id){document.getElementById(id).style.display='flex'}
-function closeWin(id){document.getElementById(id).style.display='none'}
-function openApp(t,c){document.getElementById('gTitle').innerText=t;document.getElementById('gContent').innerHTML=c;openWin('generic')}
-function sNoti(msg){document.getElementById('s-msg').innerText=msg;let n=document.getElementById('s-noti');n.classList.add('show');if(navigator.vibrate)navigator.vibrate(80);setTimeout(()=>n.classList.remove('show'),3200)}
-setInterval(()=>{let d=new Date();document.getElementById('clock').innerText=d.toLocaleTimeString()},1000);
-let canvas=document.getElementById('pcanvas'),ctx=canvas.getContext('2d'),draw=false;
-function getPos(e){let r=canvas.getBoundingClientRect();return{x:(e.touches?e.touches[0].clientX:e.clientX)-r.left,y:(e.touches?e.touches[0].clientY:e.clientY)-r.top}}
-canvas.addEventListener('touchstart',e=>{draw=true;let p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)});canvas.addEventListener('touchmove',e=>{if(!draw)return;let p=getPos(e);ctx.lineTo(p.x,p.y);ctx.strokeStyle=document.getElementById('pcol').value;ctx.lineWidth=3;ctx.stroke()});canvas.addEventListener('touchend',()=>draw=false);
-canvas.addEventListener('mousedown',e=>{draw=true;let p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)});canvas.addEventListener('mousemove',e=>{if(!draw)return;let p=getPos(e);ctx.lineTo(p.x,p.y);ctx.strokeStyle=document.getElementById('pcol').value;ctx.lineWidth=3;ctx.stroke()});canvas.addEventListener('mouseup',()=>draw=false);
-document.getElementById('cmdIn').addEventListener('keydown',e=>{if(e.key==='Enter'){let v=e.target.value.toLowerCase();let out=document.getElementById('cmdOut');if(v==='dir')out.innerHTML+='<br>XP-PC, Paint, Mines, Winamp';else if(v==='time')out.innerHTML+='<br>'+new Date().toString();else if(v==='clear')out.innerHTML='';else out.innerHTML+='<br>Command: '+v;e.target.value='';}});
-let mf=document.getElementById('mineField');let g='';for(let i=0;i<48;i++){g+=`<button style="width:36px;height:36px;margin:2px" onclick="if(Math.random()>0.85){this.innerText='💣';sNoti('Boom! Game Over 💥')}else{this.innerText='1';this.style.background='#ccc'}"></button>`}mf.innerHTML=g;
-setTimeout(()=>sNoti('Welcome to XP Social! 😎 All Systems Real!'),1500);
-if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').then(()=>console.log('SW Registered'))}
+let open=false;
+function toggleStart(){open=!open;document.getElementById('startMenu').classList.toggle('open',open)}
+document.body.addEventListener('click',e=>{if(!e.target.closest('.start-menu')&&!e.target.closest('.task-icon')){open=false;document.getElementById('startMenu').classList.remove('open')}})
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js')
 </script>
 </body>
 </html>
