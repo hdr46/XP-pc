@@ -1,13 +1,12 @@
 {
-  "name": "XP PC - Real Windows XP in Phone",
+  "name": "XP PC - Real Windows XP",
   "short_name": "XP PC",
-  "description": "Real working Windows XP computer inside your phone! Calculator, Paint, Notepad, Music Player - all working like real PC!",
-  "id": "/XP-pc/",
+  "description": "Real working Windows XP computer inside your phone! Calculator, Paint, Notepad, Music Player - all working",
   "start_url": "/XP-pc/",
   "display": "standalone",
-  "orientation": "any",
   "background_color": "#008080",
-  "theme_color": "#0a46a3",
+  "theme_color": "#008080",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
