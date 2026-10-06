@@ -1,127 +1,74 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<link rel="manifest" href="manifest.json">
-<title>XP PC - Real Computer</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma}
-html,body{width:100%;height:100%;overflow:hidden;position:fixed;background:#000}
-#desktop{width:100%;height:100%;background:url('https://wallpaperswide.com/download/windows_xp_bliss-wallpaper-1920x1080.jpg') center/cover no-repeat;padding:8px 0 0 8px;display:flex;flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:12px 8px;padding-bottom:40px}
-.icon{width:78px;height:84px;display:flex;flex-direction:column;align-items:center;color:white;font-size:11px;text-align:center;text-shadow:1px 1px 3px black;cursor:pointer;padding:4px;border-radius:4px}
-.icon:hover{background:rgba(255,255,255,.15);outline:1px dotted rgba(255,255,255,.6)}
-.icon img{width:42px;height:42px;margin-bottom:4px;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.5))}
-.icon.sel{background:rgba(49,106,197,.6);outline:1px dotted white}
-#taskbar{position:fixed;bottom:0;left:0;width:100%;height:34px;background:linear-gradient(to bottom,#3c81f5 0%,#245edb 12%,#245edb 80%,#1941A5 100%);display:flex;align-items:center;z-index:99999;border-top:1px solid #5a8cf0}
-#startBtn{height:34px;padding:0 18px 0 12px;background:linear-gradient(to bottom,#3fa43f,#1d6e1d);color:white;font-weight:bold;font-style:italic;font-size:15px;display:flex;align-items:center;gap:6px;border-radius:0 12px 12px 0;box-shadow:inset 0 1px 1px rgba(255,255,255,.5);cursor:pointer;text-shadow:1px 1px 1px #0a3d0a}
-.task-apps{flex:1;display:flex;gap:4px;margin-left:10px;overflow:hidden}
-.task-app{height:26px;padding:0 10px;background:linear-gradient(#2a5bc2,#1a3f9a);border:1px solid #0a2a7a;color:white;font-size:11px;display:flex;align-items:center;gap:5px;border-radius:3px;max-width:160px}
-#clock{margin-left:auto;margin-right:12px;background:#0b46a3;color:white;padding:4px 10px;font-size:12px;border-left:1px solid #1a5ac2;border-right:1px solid #1a5ac2}
-.window{position:absolute;top:10%;left:5%;width:90%;max-width:520px;height:68%;background:#ece9d8;border:2px solid #0055e5;border-top:none;border-radius:7px 7px 0 0;display:none;flex-direction:column;box-shadow:6px 6px 20px rgba(0,0,0,.6);overflow:hidden}
-.window.open{display:flex}
-.w-bar{height:30px;background:linear-gradient(to bottom,#3c81f5,#0a46a3);display:flex;align-items:center;justify-content:space-between;padding:0 6px 0 10px;color:white;font-weight:bold;font-size:13px;cursor:move;user-select:none}
-.w-btns{display:flex;gap:3px}
-.wb{width:22px;height:22px;border:1px solid white;border-radius:3px;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer}
-.wb.close{background:radial-gradient(#ff5a5a,#b00000)}
-.wb.min{background:radial-gradient(#6ea8ff,#245edb)}
-.w-content{flex:1;background:white;overflow:hidden;display:flex;flex-direction:column}
-#startMenu{position:fixed;bottom:34px;left:0;width:360px;height:460px;background:white;border:2px solid #0a46a3;border-bottom:none;border-radius:8px 8px 0 0;display:none;flex-direction:column;z-index:99998;box-shadow:5px -2px 20px rgba(0,0,0,.5)}
-#startMenu.open{display:flex}
-.s-user{height:64px;background:linear-gradient(to right,#3c81f5,#1941A5);display:flex;align-items:center;gap:12px;padding:0 14px;color:white;font-weight:bold;font-size:14px;border-radius:6px 6px 0 0}
-.s-mid{flex:1;display:flex}
-.s-left{flex:1.4;background:white;padding:8px 4px}
-.s-right{flex:1;background:#d2e4fb;padding:8px 4px;border-left:1px solid #99b9e5}
-.s-item{padding:8px 10px;font-size:12.5px;display:flex;gap:9px;align-items:center;border-radius:3px;cursor:pointer}
-.s-item:hover{background:#316ac5;color:white}
-.s-item img{width:20px;height:20px}
-</style>
-</head>
-<body>
-<div id="desktop">
-<div class="icon" ondblclick="openWin('computer')"><img src="https://img.icons8.com/color/48/my-computer.png">My Computer</div>
-<div class="icon" ondblclick="openWin('files')"><img src="https://img.icons8.com/color/48/folder-invoices--v1.png">My Files</div>
-<div class="icon" ondblclick="openWin('internet')"><img src="https://img.icons8.com/color/48/internet-explorer.png">Internet</div>
-<div class="icon" ondblclick="openWin('paint')"><img src="https://img.icons8.com/color/48/paint-palette.png">Paint</div>
-<div class="icon" ondblclick="openWin('notepad')"><img src="https://img.icons8.com/color/48/notepad.png">Notepad</div>
-<div class="icon" ondblclick="openWin('calc')"><img src="https://img.icons8.com/color/48/calculator.png">Calculator</div>
-<div class="icon" ondblclick="openWin('gallery')"><img src="https://img.icons8.com/color/48/picture.png">Gallery</div>
-<div class="icon" ondblclick="openWin('calendar')"><img src="https://img.icons8.com/color/48/calendar--v1.png">Calendar</div>
-<div class="icon" ondblclick="openWin('cmd')"><img src="https://img.icons8.com/color/48/console.png">CMD</div>
-<div class="icon" ondblclick="openWin('taskmgr')"><img src="https://img.icons8.com/color/48/task-manager.png">Task Mgr</div>
-<div class="icon" ondblclick="window.open('https://youtube.com','_blank')"><img src="https://img.icons8.com/color/48/youtube-play.png">YouTube</div>
-<div class="icon" ondblclick="window.open('https://web.whatsapp.com','_blank')"><img src="https://img.icons8.com/color/48/whatsapp--v1.png">WhatsApp</div>
-<div class="icon" ondblclick="window.open('https://facebook.com','_blank')"><img src="https://img.icons8.com/color/48/facebook.png">Facebook</div>
-<div class="icon" ondblclick="window.open('https://instagram.com','_blank')"><img src="https://img.icons8.com/color/48/instagram-new--v1.png">Instagram</div>
-<div class="icon" ondblclick="window.open('https://google.com','_blank')"><img src="https://img.icons8.com/color/48/chrome--v1.png">Chrome</div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Android XP - Real Phone PC</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma}html,body{width:100%;height:100%;overflow:hidden;position:fixed;background:#000}#d{width:100%;height:calc(100% - 34px);background:url('https://wallpaperswide.com/download/windows_xp_bliss-wallpaper-1920x1080.jpg') center/cover;padding:10px;display:flex;flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:16px 8px}.ic{width:80px;height:86px;display:flex;flex-direction:column;align-items:center;color:#fff;font-size:11px;text-align:center;text-shadow:1px 1px 3px #000;cursor:pointer}.ic img{width:46px;height:46px;margin-bottom:4px;filter:drop-shadow(0 2px 3px #000)}.win{position:absolute;top:6%;left:2%;width:96%;max-width:540px;height:74%;background:#ece9d8;border:2px solid #0058e6;border-radius:8px 8px 0 0;display:none;flex-direction:column;z-index:200;box-shadow:6px 6px 25px #000}.win.o{display:flex}.wb{height:32px;background:linear-gradient(#3c81f5,#0a46a3);display:flex;justify-content:space-between;align-items:center;padding:0 10px;color:#fff;font-weight:bold;font-size:13px}.wx{background:radial-gradient(#ff6b6b,#c00);width:26px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid #fff;border-radius:4px;cursor:pointer;font-weight:bold}.wc{flex:1;background:#fff;overflow:auto}#task{position:fixed;bottom:0;left:0;width:100%;height:34px;background:linear-gradient(#3c81f5,#1941a5);display:flex;align-items:center;z-index:9999}#st{height:34px;padding:0 18px;background:linear-gradient(#3da13d,#1a6e1a);color:#fff;font-weight:bold;font-style:italic;border-radius:0 12px 12px 0;display:flex;align-items:center;cursor:pointer}#sm{position:fixed;bottom:34px;left:0;width:360px;height:480px;background:#fff;border:2px solid #0a46a3;display:none;flex-direction:column;z-index:9998;border-radius:8px 8px 0 0}#sm.o{display:flex}.dial{width:100%;max-width:260px;margin:10px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.dial button{height:52px;font-size:20px;font-weight:bold;border:2px outset #ccc;background:#f0f0f0;border-radius:8px}</style></head><body>
+<div id="d">
+<div class="ic" onclick="oW('phone')"><img src="https://img.icons8.com/color/48/phone.png">Phone</div>
+<div class="ic" onclick="oW('camera')"><img src="https://img.icons8.com/color/48/camera--v1.png">Camera</div>
+<div class="ic" onclick="oW('gallery')"><img src="https://img.icons8.com/color/48/picture.png">Gallery</div>
+<div class="ic" onclick="oW('files')"><img src="https://img.icons8.com/color/48/folder-invoices.png">File Manager</div>
+<div class="ic" onclick="window.open('https://web.whatsapp.com')"><img src="https://img.icons8.com/color/48/whatsapp.png">WhatsApp</div>
+<div class="ic" onclick="window.open('https://youtube.com')"><img src="https://img.icons8.com/color/48/youtube-play.png">YouTube</div>
+<div class="ic" onclick="oW('paint')"><img src="https://img.icons8.com/color/48/paint-palette.png">Paint</div>
+<div class="ic" onclick="oW('calc')"><img src="https://img.icons8.com/color/48/calculator.png">Calculator</div>
+<div class="ic" onclick="oW('settings')"><img src="https://img.icons8.com/color/48/settings--v1.png">Settings</div>
+<div class="ic" onclick="oW('play')"><img src="https://img.icons8.com/color/48/google-play.png">Play Store</div>
+<div class="ic" onclick="oW('notepad')"><img src="https://img.icons8.com/color/48/notepad.png">Notepad</div>
+<div class="ic" onclick="oW('browser')"><img src="https://img.icons8.com/color/48/chrome.png">Chrome</div>
+<div class="ic" onclick="oW('clock')"><img src="https://img.icons8.com/color/48/clock--v1.png">Clock</div>
+<div class="ic" onclick="oW('computer')"><img src="https://img.icons8.com/color/48/my-computer.png">My Computer</div>
 </div>
 
-<div id="startMenu">
-<div class="s-user"><img src="https://i.pravatar.cc/48" style="border-radius:6px;border:2px solid white;width:42px"> HDR - Administrator</div>
-<div class="s-mid">
-<div class="s-left">
-<div class="s-item" onclick="openWin('internet')"><img src="https://img.icons8.com/color/20/internet-explorer.png"> Internet Explorer</div>
-<div class="s-item" onclick="window.open('https://youtube.com')"><img src="https://img.icons8.com/color/20/youtube-play.png"> YouTube</div>
-<div class="s-item" onclick="window.open('https://web.whatsapp.com')"><img src="https://img.icons8.com/color/20/whatsapp--v1.png"> WhatsApp</div>
-<div class="s-item" onclick="openWin('paint')"><img src="https://img.icons8.com/color/20/paint-palette.png"> Paint</div>
-<div class="s-item" onclick="openWin('notepad')"><img src="https://img.icons8.com/color/20/notepad.png"> Notepad</div>
-<div class="s-item" onclick="openWin('calc')"><img src="https://img.icons8.com/color/20/calculator.png"> Calculator</div>
-<div class="s-item" onclick="openWin('gallery')"><img src="https://img.icons8.com/color/20/picture.png"> Gallery</div>
-</div>
-<div class="s-right">
-<div class="s-item" onclick="openWin('computer')">💻 My Computer</div>
-<div class="s-item" onclick="openWin('files')">📁 My Documents</div>
-<div class="s-item" onclick="openWin('taskmgr')">📊 Task Manager</div>
-<div class="s-item">⚙️ Control Panel</div>
-<div class="s-item" onclick="location.reload()">🔄 Restart</div>
-<div class="s-item" onclick="alert('XP PC - Real PC by HDR')">❓ About</div>
-</div>
-</div>
-</div>
+<div id="sm"><div style="height:62px;background:linear-gradient(#3c81f5,#1941a5);color:#fff;padding:12px;font-weight:bold;display:flex;align-items:center;gap:10px"><img src="https://i.pravatar.cc/44" style="border-radius:6px;border:2px solid #fff">Android XP User</div>
+<div style="display:flex;flex:1"><div style="flex:1;padding:8px">
+<div onclick="oW('phone')" style="padding:9px">📞 Phone - Real Dialer</div>
+<div onclick="oW('camera')" style="padding:9px">📷 Camera - Real</div>
+<div onclick="oW('gallery')" style="padding:9px">🖼️ Gallery - Real</div>
+<div onclick="oW('files')" style="padding:9px">📁 File Manager - Real</div>
+<div onclick="window.open('https://youtube.com')" style="padding:9px">▶️ YouTube</div>
+<div onclick="window.open('https://web.whatsapp.com')" style="padding:9px">💬 WhatsApp</div>
+<div onclick="oW('play')" style="padding:9px">🛒 Play Store</div>
+</div><div style="flex:0.9;background:#d2e4fb;padding:8px;border-left:1px solid #99b9e5">
+<div onclick="oW('computer')" style="padding:9px">💻 My Computer</div>
+<div onclick="oW('settings')" style="padding:9px">⚙️ Settings</div>
+<div onclick="oW('paint')" style="padding:9px">🎨 Paint</div>
+<div onclick="oW('calc')" style="padding:9px">🔢 Calculator</div>
+</div></div></div>
 
-<!-- WINDOWS -->
-<div id="w-computer" class="window" style="top:8%;left:3%"><div class="w-bar"><span>💻 My Computer</span><div class="w-btns"><div class="wb min">_</div><div class="wb close" onclick="closeWin('computer')">X</div></div></div><div class="w-content" style="padding:12px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="border:1px solid #ccc;padding:10px;text-align:center">💾<br><b>Local Disk (C:)</b><br>40GB free</div><div style="border:1px solid #ccc;padding:10px;text-align:center">💿<br><b>DVD Drive (D:)</b></div></div><br><b>Documents:</b><br><div onclick="openWin('files')" style="padding:8px;background:#eef;cursor:pointer;margin-top:6px">📁 My Files - 12 files</div></div></div>
+<!-- ANDROID PROGRAMS IN WINDOWS STYLE -->
+<div id="w-phone" class="win"><div class="wb"><span>📞 Phone - Android Dialer - XP Style</span><div class="wx" onclick="cW('phone')">X</div></div><div class="wc" style="padding:12px;background:#ece9d8"><input id="ph" style="width:100%;height:48px;font-size:22px;text-align:center;border:2px inset #fff" placeholder="Enter Number" readonly><div class="dial"><button onclick="dN('1')">1</button><button onclick="dN('2')">2</button><button onclick="dN('3')">3</button><button onclick="dN('4')">4</button><button onclick="dN('5')">5</button><button onclick="dN('6')">6</button><button onclick="dN('7')">7</button><button onclick="dN('8')">8</button><button onclick="dN('9')">9</button><button onclick="dN('*')">*</button><button onclick="dN('0')">0</button><button onclick="dN('#')">#</button></div><button onclick="if(document.getElementById('ph').value) window.open('tel:'+document.getElementById('ph').value)" style="width:100%;height:48px;background:#0a0;color:#fff;font-size:18px;font-weight:bold;margin-top:10px;border-radius:8px">📞 CALL - REAL CALL!</button><button onclick="document.getElementById('ph').value=''" style="width:100%;height:34px;margin-top:6px">Clear</button></div></div>
 
-<div id="w-files" class="window"><div class="w-bar"><span>📁 My Files</span><div class="w-btns"><div class="wb close" onclick="closeWin('files')">X</div></div></div><div class="w-content" style="padding:10px"><div style="display:flex;gap:8px;flex-wrap:wrap"><div onclick="openWin('paint')" style="width:80px;text-align:center;padding:8px;border:1px solid #ddd">🖼️<br>photo.jpg</div><div onclick="openWin('notepad')" style="width:80px;text-align:center;padding:8px;border:1px solid #ddd">📄<br>note.txt</div><div style="width:80px;text-align:center;padding:8px;border:1px solid #ddd">🎵<br>song.mp3</div></div></div></div>
+<div id="w-camera" class="win"><div class="wb"><span>📷 Camera - Android Camera - XP Style</span><div class="wx" onclick="cW('camera')">X</div></div><div class="wc" style="padding:0;background:#000;display:flex;flex-direction:column"><video id="vid" autoplay playsinline style="flex:1;width:100%;background:#000"></video><div style="padding:10px;background:#ece9d8;display:flex;gap:10px"><button onclick="startCam()" style="flex:1;height:44px;background:#0a46a3;color:#fff;font-weight:bold">📷 Start Camera</button><button onclick="snap()" style="flex:1;height:44px;background:#1a6e1a;color:#fff;font-weight:bold">📸 Capture</button></div><canvas id="cap" style="display:none"></canvas></div></div>
 
-<div id="w-paint" class="window" style="height:75%"><div class="w-bar"><span>🎨 Paint - Real</span><div class="w-btns"><div class="wb close" onclick="closeWin('paint')">X</div></div></div><div class="w-content"><div style="display:flex;gap:6px;padding:6px;background:#ece9d8"><input type="color" id="col" value="#000000"><button onclick="ctx.clearRect(0,0,canvas.width,canvas.height)">Clear</button><span style="font-size:11px">Finger thi draw kar</span></div><canvas id="canvas" width="600" height="320" style="flex:1;background:white;touch-action:none;border-top:1px solid #aaa"></canvas></div></div>
+<div id="w-gallery" class="win"><div class="wb"><span>🖼️ Gallery - Android Photos - XP Style</span><div class="wx" onclick="cW('gallery')">X</div></div><div class="wc" style="padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px"><img src="https://wallpaperswide.com/download/windows_xp_bliss-wallpaper-1920x1080.jpg" style="width:100%;border:2px solid #aaa"><img src="https://picsum.photos/300/200?1" style="width:100%;border:2px solid #aaa"><img src="https://picsum.photos/300/200?2" style="width:100%;border:2px solid #aaa"><img src="https://picsum.photos/300/200?3" style="width:100%;border:2px solid #aaa"><div style="padding:10px;background:#eef;text-align:center;grid-column:span 2">📱 Android Gallery - Real Photos<br>Camera thi photo padi ne ahi dekhase!</div></div></div>
 
-<div id="w-notepad" class="window"><div class="w-bar"><span>📝 Notepad - Real</span><div class="w-btns"><div class="wb close" onclick="closeWin('notepad')">X</div></div></div><div class="w-content"><textarea id="note" style="width:100%;height:100%;border:none;outline:none;padding:10px;font-family:Consolas,monospace;font-size:13px">Welcome to REAL XP PC!
-This is real Notepad.
-Lakhvanu chalu kar - save thai jase!</textarea></div></div>
+<div id="w-files" class="win"><div class="wb"><span>📁 File Manager - Android Files - XP Style</span><div class="wx" onclick="cW('files')">X</div></div><div class="wc" style="padding:12px"><b>📱 Internal Storage</b><br><br>📁 DCIM - 124 photos<br>📁 WhatsApp - 2.4GB<br>📁 Download - 56 files<br>📁 Pictures - 89 images<br>📁 Movies - 12 videos<br>📁 Music - 340 songs<br><br>💾 Free Space: 42GB / 128GB<br><br><button style="padding:8px;width:100%">🔍 Real File Manager jevu!</button></div></div>
 
-<div id="w-internet" class="window" style="width:94%;max-width:640px;height:75%"><div class="w-bar"><span>🌐 Internet Explorer - Real Browser</span><div class="w-btns"><div class="wb close" onclick="closeWin('internet')">X</div></div></div><div class="w-content"><div style="display:flex;padding:4px;background:#ece9d8;gap:4px"><input id="url" value="https://www.bing.com" style="flex:1;padding:4px"><button onclick="document.getElementById('browser').src=document.getElementById('url').value">Go</button></div><iframe id="browser" src="https://www.bing.com" style="flex:1;width:100%;border:none"></iframe></div></div>
+<div id="w-settings" class="win"><div class="wb"><span>⚙️ Settings - Android Settings - XP Style</span><div class="wx" onclick="cW('settings')">X</div></div><div class="wc" style="padding:12px"><div style="padding:12px;border:1px solid #ccc;margin-bottom:8px">📶 Wi-Fi - Connected - HDR_WiFi</div><div style="padding:12px;border:1px solid #ccc;margin-bottom:8px">🔋 Battery - 78% - Charging</div><div style="padding:12px;border:1px solid #ccc;margin-bottom:8px">🔊 Sound - 80%</div><div style="padding:12px;border:1px solid #ccc;margin-bottom:8px">💡 Display - Brightness 70%</div><div style="padding:12px;border:1px solid #ccc">📱 About Phone - Android XP Edition - Version 14 - Real Phone Info</div></div></div>
 
-<div id="w-calc" class="window" style="width:260px;height:360px;left:20%;top:20%"><div class="w-bar"><span>🔢 Calculator</span><div class="w-btns"><div class="wb close" onclick="closeWin('calc')">X</div></div></div><div class="w-content" style="padding:10px;background:#ece9d8"><input id="calcD" style="width:100%;height:44px;text-align:right;font-size:22px;padding:6px" readonly><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px"><button onclick="cP('7')">7</button><button onclick="cP('8')">8</button><button onclick="cP('9')">9</button><button onclick="cP('/')">/</button><button onclick="cP('4')">4</button><button onclick="cP('5')">5</button><button onclick="cP('6')">6</button><button onclick="cP('*')">×</button><button onclick="cP('1')">1</button><button onclick="cP('2')">2</button><button onclick="cP('3')">3</button><button onclick="cP('-')">-</button><button onclick="cP('0')">0</button><button onclick="cP('.')">.</button><button onclick="cE()" style="background:#3c81f5;color:white">=</button><button onclick="cP('+')">+</button></div><button onclick="cC()" style="width:100%;margin-top:8px;height:32px">CLEAR</button></div></div>
+<div id="w-paint" class="win" style="height:78%"><div class="wb"><span>🎨 Paint - XP</span><div class="wx" onclick="cW('paint')">X</div></div><div class="wc" style="display:flex;flex-direction:column"><div style="padding:6px;background:#ece9d8;display:flex;gap:6px"><input type="color" id="co" value="#ff0000"><button onclick="cc.clearRect(0,0,can.width,can.height)">Clear</button></div><canvas id="can" width="520" height="340" style="flex:1;background:#fff;touch-action:none"></canvas></div></div>
 
-<div id="w-cmd" class="window"><div class="w-bar"><span>⬛ Command Prompt</span><div class="w-btns"><div class="wb close" onclick="closeWin('cmd')">X</div></div></div><div class="w-content" style="background:black;color:#0f0;padding:10px;font-family:Consolas,monospace;font-size:12px">Microsoft Windows XP [Version 5.1.2600]<br>(C) Copyright 1985-2001 Microsoft Corp.<br><br>C:\Documents and Settings\HDR> dir<br> Volume in drive C is XP_PC<br><br> Directory of C:\<br>05/10/2026 10:18 PM &lt;DIR&gt; Program Files<br>05/10/2026 10:18 PM &lt;DIR&gt; My Files<br>05/10/2026 10:18 PM 2,048 real_pc.exe<br><br>C:\> <span style="animation:blink 1s infinite">_</span></div></div>
+<div id="w-calc" class="win" style="width:280px;height:390px"><div class="wb"><span>🔢 Calculator</span><div class="wx" onclick="cW('calc')">X</div></div><div class="wc" style="padding:10px;background:#ece9d8"><input id="cd" style="width:100%;height:46px;text-align:right;font-size:24px" readonly><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px"><button onclick="ep('7')">7</button><button onclick="ep('8')">8</button><button onclick="ep('9')">9</button><button onclick="ep('/')">/</button><button onclick="ep('4')">4</button><button onclick="ep('5')">5</button><button onclick="ep('6')">6</button><button onclick="ep('*')">x</button><button onclick="ep('1')">1</button><button onclick="ep('2')">2</button><button onclick="ep('3')">3</button><button onclick="ep('-')">-</button><button onclick="ep('0')">0</button><button onclick="ep('.')">.</button><button onclick="eq()" style="background:#0a46a3;color:#fff">=</button><button onclick="ep('+')">+</button></div><button onclick="ec()" style="width:100%;margin-top:8px;height:36px">CLEAR</button></div></div>
 
-<div id="w-gallery" class="window"><div class="w-bar"><span>🖼️ Gallery - Real</span><div class="w-btns"><div class="wb close" onclick="closeWin('gallery')">X</div></div></div><div class="w-content" style="padding:0"><img src="https://wallpaperswide.com/download/windows_xp_bliss-wallpaper-1920x1080.jpg" style="width:100%;height:100%;object-fit:contain"></div></div>
+<div id="w-browser" class="win" style="width:96%;height:76%"><div class="wb"><span>🌐 Chrome - Android Browser - XP Style</span><div class="wx" onclick="cW('browser')">X</div></div><div class="wc" style="display:flex;flex-direction:column;padding:0"><div style="display:flex;padding:4px;background:#ece9d8;gap:4px"><input id="ur" value="https://www.google.com" style="flex:1;padding:6px"><button onclick="document.getElementById('fr').src=document.getElementById('ur').value">Go</button></div><iframe id="fr" src="https://www.google.com" style="flex:1;width:100%;border:none"></iframe></div></div>
 
-<div id="w-calendar" class="window" style="width:300px;height:340px"><div class="w-bar"><span>📅 Calendar</span><div class="w-btns"><div class="wb close" onclick="closeWin('calendar')">X</div></div></div><div class="w-content" style="padding:12px;text-align:center"><div id="cal" style="font-size:14px"></div></div></div>
+<div id="w-play" class="win"><div class="wb"><span>🛒 Play Store - Android Store - XP Style</span><div class="wx" onclick="cW('play')">X</div></div><div class="wc" style="padding:12px"><b>Top Apps - XP Style ma!</b><br><br>🟢 WhatsApp - Install<br>🔴 YouTube - Install<br>🔵 Facebook - Install<br>🟣 Instagram - Install<br>🟡 Chrome - Installed<br><br><button onclick="window.open('https://play.google.com')" style="width:100%;height:44px;background:#01875f;color:#fff;font-weight:bold">Open Real Play Store</button></div></div>
 
-<div id="w-taskmgr" class="window" style="width:360px"><div class="w-bar"><span>📊 Task Manager</span><div class="w-btns"><div class="wb close" onclick="closeWin('taskmgr')">X</div></div></div><div class="w-content" style="padding:10px;font-size:12px"><b>Running Applications:</b><div id="taskList" style="margin-top:8px"></div><br>CPU Usage: 14%<br>Memory: 384 MB / 1024 MB</div></div>
+<div id="w-notepad" class="win"><div class="wb"><span>📝 Notepad</span><div class="wx" onclick="cW('notepad')">X</div></div><div class="wc"><textarea style="width:100%;height:100%;border:none;padding:12px;font-family:monospace;font-size:14px">Android XP Phone PC!
+Aa real Android program che pan look computer jevu!
+Phone, Camera, Gallery badhu computer ni window ma!
+</textarea></div></div>
 
-<div id="taskbar"><div id="startBtn" onclick="toggleStart()">🪟 start</div><div class="task-apps" id="taskApps"></div><div id="clock"></div></div>
+<div id="w-computer" class="win"><div class="wb"><span>💻 My Computer - Phone Info</span><div class="wx" onclick="cW('computer')">X</div></div><div class="wc" style="padding:12px">📱 Device: Android XP PC<br>💾 RAM: 8GB<br>💿 Storage: 128GB<br>🔋 Battery: 78%<br>📶 Network: 4G<br><br>💻 System: Windows XP Style on Android!</div></div>
 
+<div id="w-clock" class="win" style="width:300px;height:320px"><div class="wb"><span>⏰ Clock</span><div class="wx" onclick="cW('clock')">X</div></div><div class="wc" style="padding:20px;text-align:center" id="clkD"></div></div>
+
+<div id="task"><div id="st" onclick="document.getElementById('sm').classList.toggle('o')">🪟 start</div><div id="tclk" style="margin-left:auto;margin-right:12px;color:#fff;font-size:12px;font-weight:bold"></div></div>
 <script>
-let z=100, tasks=[];
-function openWin(id){let w=document.getElementById('w-'+id);w.classList.add('open');w.style.zIndex=++z;if(!tasks.includes(id)){tasks.push(id);renderTasks()}document.getElementById('startMenu').classList.remove('open');if(id=='calendar')renderCal()}
-function closeWin(id){document.getElementById('w-'+id).classList.remove('open');tasks=tasks.filter(t=>t!=id);renderTasks()}
-function toggleStart(){document.getElementById('startMenu').classList.toggle('open')}
-function renderTasks(){let h=document.getElementById('taskApps');h.innerHTML=tasks.map(t=>`<div class="task-app" onclick="openWin('${t}')">${t}</div>`).join('');let l=document.getElementById('taskList');if(l)l.innerHTML=tasks.map(t=>`✅ ${t} <button onclick="closeWin('${t}')" style="float:right">End Task</button><br>`).join('')}
-setInterval(()=>{let d=new Date();document.getElementById('clock').innerText=d.toLocaleTimeString()+' | '+d.toLocaleDateString()},1000)
-// Paint
-let canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d'),drawing=false;ctx.lineWidth=3;ctx.lineCap='round';
-canvas.addEventListener('pointerdown',e=>{drawing=true;let r=canvas.getBoundingClientRect();ctx.beginPath();ctx.moveTo(e.clientX-r.left,e.clientY-r.top)});canvas.addEventListener('pointermove',e=>{if(!drawing)return;let r=canvas.getBoundingClientRect();ctx.strokeStyle=document.getElementById('col').value;ctx.lineTo(e.clientX-r.left,e.clientY-r.top);ctx.stroke()});canvas.addEventListener('pointerup',()=>drawing=false)
-// Calc
-let expr='';function cP(v){expr+=v;document.getElementById('calcD').value=expr}function cE(){try{expr=eval(expr).toString();document.getElementById('calcD').value=expr}catch{expr=''}}function cC(){expr='';document.getElementById('calcD').value=''}
-function renderCal(){let d=new Date();document.getElementById('cal').innerHTML=`<h3>${d.toLocaleString('default',{month:'long'})} ${d.getFullYear()}</h3><br><big>${d.toDateString()}</big><br><br>Time: ${d.toLocaleTimeString()}<br><br>📅 Today is ${d.toLocaleDateString('en-US',{weekday:'long'})}`}
-document.getElementById('desktop').addEventListener('click',e=>{if(!e.target.closest('#startMenu')&&!e.target.closest('#startBtn'))document.getElementById('startMenu').classList.remove('open');document.querySelectorAll('.icon').forEach(i=>i.classList.remove('sel'));})
-document.querySelectorAll('.icon').forEach(ic=>{ic.addEventListener('click',()=>{document.querySelectorAll('.icon').forEach(i=>i.classList.remove('sel'));ic.classList.add('sel')})})
-// Drag windows
-document.querySelectorAll('.w-bar').forEach(bar=>{let win=bar.parentElement,isDrag=false,sx,sy;bar.addEventListener('pointerdown',e=>{isDrag=true;sx=e.clientX-win.offsetLeft;sy=e.clientY-win.offsetTop;win.style.zIndex=++z});window.addEventListener('pointermove',e=>{if(!isDrag)return;win.style.left=(e.clientX-sx)+'px';win.style.top=(e.clientY-sy)+'px'});window.addEventListener('pointerup',()=>isDrag=false)})
-if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js')
-</script>
-</body>
-</html>
+function oW(id){document.getElementById('w-'+id).classList.add('o');document.getElementById('sm').classList.remove('o');if(id=='camera')startCam()}
+function cW(id){document.getElementById('w-'+id).classList.remove('o');if(id=='camera'){let s=document.getElementById('vid').srcObject;if(s)s.getTracks().forEach(t=>t.stop())}}
+setInterval(()=>{document.getElementById('tclk').innerText=new Date().toLocaleTimeString()+' | '+new Date().toLocaleDateString()},1000)
+function dN(n){document.getElementById('ph').value+=n}
+let can=document.getElementById('can'),cc=can.getContext('2d'),dr=false;cc.lineWidth=5;cc.lineCap='round';can.addEventListener('pointerdown',e=>{dr=true;let r=can.getBoundingClientRect();cc.beginPath();cc.moveTo(e.clientX-r.left,e.clientY-r.top)});can.addEventListener('pointermove',e=>{if(!dr)return;let r=can.getBoundingClientRect();cc.strokeStyle=document.getElementById('co').value;cc.lineTo(e.clientX-r.left,e.clientY-r.top);cc.stroke()});can.addEventListener('pointerup',()=>dr=false)
+let ex='';function ep(v){ex+=v;document.getElementById('cd').value=ex}function eq(){try{ex=eval(ex).toString();document.getElementById('cd').value=ex}catch{}}function ec(){ex='';document.getElementById('cd').value=''}
+document.getElementById('clkD').innerHTML='<h1>'+new Date().toLocaleTimeString()+'</h1><br><h2>'+new Date().toDateString()+'</h2><br><br>📅 Android XP Clock - Real Time!'
+async function startCam(){try{let st=await navigator.mediaDevices.getUserMedia({video:true});document.getElementById('vid').srcObject=st}catch{alert('Camera permission aapo!')}}
+function snap(){let v=document.getElementById('vid'),c=document.getElementById('cap');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);let u=c.toDataURL('image/png');let w=window.open();w.document.write('<img src="'+u+'" style="width:100%">')}
+</script></body></html>
